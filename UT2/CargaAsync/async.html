@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Secuencia de ejecución </h3>
+    <div id="caja"></div>
+    <div id="caja1"></div>
+ <script>
+    let cajon = document.getElementById("caja");
+  
+    console.log(+"\nScript html : " + 1);
+      debugger;
+
+    var p1 = document.createElement("p");
+    var texto1 = document.createTextNode("Script html : " + 1)
+    p1.appendChild(texto1);
+    p1.style.backgroundColor = "cyan";
+    cajon.appendChild(p1);
+    debugger;
+
+    function cambiar() {
+        // cajon.innerText= cajon.innerText+"\nScript html  funtion cambiar : "+ 3;
+      debugger;
+        var p2 = document.createElement("p");
+        var texto2 = document.createTextNode("Script html funtion cambiar : " + 3);
+        p2.appendChild(texto2);
+        p2.style.backgroundColor = "yellow";
+        cajon.appendChild(p2);
+        console.log("\nScript html funtion cambiar : " + 3);
+    debugger;    }
+</script>
+<script type="text/javascript" src="async.js" async ></script>
+<p>FIN</p>
+</body>
+</html>
