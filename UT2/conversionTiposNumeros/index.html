@@ -1,48 +1,49 @@
 <!-- UT2 TAREA 5-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de tipos entre decimal, binario, hexadecimal y octal</title>
-    <script src="JS/funciones.js"></script>
+    <title>Conversor de tipos entre decimal, binario hexadecimal y octal</title>
+
 </head>
+
 <body>
     <header>
-        <h1>Conversor de tipos entre decimal, binario, hexadecimal y octal</h1>
+    <h1> Conversor de tipos entre decimal, binario hexadecimal y octal</h1>
     </header>
-    <article>
-        <section>
-         <h3>Número a convertir</h3>
-          <input type="text" id="numero"/>
-        </section>
-    </article>
-    <article>
-        <section>
-         <h3>Elige tipo de conversion</h3>
-         <select id="modo">
-            <optgroup label="De DECIMAL a">
-                <option value="1">  Binario</option> 
-                <option value="2">  Octal</option> 
-                <option value="3">  Hexadecimal</option> 
-            </optgroup>
-            <optgroup label="De  tipo  a DECIMAL">
-                <option value="4">Binario  </option> 
-                <option value="5">Octal </option> 
-                <option value="6">Hexadecimal  </option> 
-            </optgroup>
-        </select>
-        </section>
-    </article>
-    <article>
-        <section>
-         <h3>Resultado</h3>
-          <input type="text" id="resultado"/>
-        </section>
-    </article>
+    <section>
+        <article>
+            <h3> Número a convertir</h3>
+            <input type="text" id="numero" />
+        </article>
+        <article>
+            <h3> Elige tipo de conversión</h3>
+            <select id="modo">
+                <optgroup label="De DECIMAL a">
+                    <option value="1">  Binario</option> 
+                    <option value="2">  Octal</option> 
+                    <option value="3">  Hexadecimal</option> 
+                </optgroup>
+                <optgroup label="De  tipo  a DECIMAL"">
+                    <option value="4">Binario  </option> 
+                    <option value="5">Octal </option> 
+                    <option value="6">Hexadecimal  </option> 
+                </optgroup>
+            </select>
+        </article>
+        <article>
+            <h3>Resultado</h3>
+            <input type="text" id="resultado" />
+        </article>
+    </section>
     <footer>
-        <p>CIFP SANTA CATALINA DAW 2 CURSO 2021/2022</p>
+        <p>CIPF Santa Catalina DAW curso 2020-2021</p>
     </footer>
+
+    <script src="./js/funciones.js"></script>
 </body>
+
 </html>
