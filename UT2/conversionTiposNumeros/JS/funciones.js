@@ -6,6 +6,7 @@ function calcular(){
     var elemento=this.options[this.selectedIndex].value;
     var numero= document.getElementById("numero").value;
     var nn=parseInt(numero) 
+    
     var resultado= document.getElementById("resultado") ;
     switch (elemento)
     {
@@ -22,15 +23,16 @@ function calcular(){
            resultado.value=nn.toString(16);
          break;
          case "4":
-            // Código que pasa de decimal a hexadecimal       
-           resultado.value=nn.toString(16);
+            // Código que pasa de binario a decimal       
+            
+            resultado.value=parseInt(numero, 2);
          break;
          case "5":
-            // Código que pasa de decimal a hexadecimal       
+            // Código que pasa de octal a decimal       
            resultado.value=nn.toString(16);
          break;
          case "6":
-            // Código que pasa de decimal a hexadecimal       
+            // Código que pasa de hexadecimal a decimal        
            resultado.value=nn.toString(16);
          break;
     }
