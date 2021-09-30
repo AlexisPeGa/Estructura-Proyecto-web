@@ -29,11 +29,11 @@ function calcular(){
          break;
          case "5":
             // Código que pasa de octal a decimal       
-           resultado.value=nn.toString(16);
+            resultado.value=parseInt(numero, 8);
          break;
          case "6":
             // Código que pasa de hexadecimal a decimal        
-           resultado.value=nn.toString(16);
+            resultado.value=parseInt(numero, 16);
          break;
     }
 
