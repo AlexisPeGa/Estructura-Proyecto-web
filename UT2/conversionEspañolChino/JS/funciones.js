@@ -1,0 +1,1 @@
+var chino = unescape("%u" + codigoUnicode + "e8"); 
