@@ -1,0 +1,23 @@
+header{
+    padding: 20px;
+    text-align: center;
+    background-color: grey;
+    margin-bottom: 20px;
+    
+}
+body{
+    background-color: black;
+}
+section{
+    background-color:grey;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+footer{
+    border: 5px;
+    background-color: grey;
+    text-align: center;
+    padding:20px;
+}
