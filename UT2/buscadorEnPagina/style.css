@@ -1,0 +1,46 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    
+}
+
+main h1 {
+    font-size:30px;
+}
+
+
+p {
+    padding: 10px;
+}
+
+header h1 {
+    height: 80px;
+    line-height: 80px;
+    padding-left: 10px;
+    background: #3BF5F5;
+}
+article{
+    background-color: #D0FEFE;
+}
+
+
+footer {
+    background: #18A8A8;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    clear: both;
+    width: 100%
+}
+
+section {
+
+    margin-left: -100px;
+
+}
+
+article {
+    padding-left: 150px;
+}
+
+
