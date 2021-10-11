@@ -31,7 +31,7 @@ function buscarLetra(){
     while(posicion>-1){
         guiones=guiones.substring(0,posicion)+letraBuscar+guiones.substr(posicion+1,guiones.length);
         aciertos.value=guiones;
-        posicion=palabra.value.indexOf(letraBuscar,posicion+1);
+        posicion=palabraMayus.indexOf(letraBuscar,posicion+1);
         esAcierto = true;
     }
     if(!esAcierto){
