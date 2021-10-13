@@ -25,6 +25,13 @@ function cargarXml() {
     aEditorial = myXml.getElementsByTagName("editorial");
     aPaginas = myXml.getElementsByTagName("paginas");
 
+    /*for(var i=0;i<aIsbn.length;i++){
+    p=new datoslibro(aIsbn.item(i).firstChild.nodeValue,aTitulo);
+        datos[i]=p;
+    }
+    function datoslibro(){
+        this.Isbn=aIsbn;
+    }*/
     mostrarRegistro(1)
 
 }
