@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            function mostrarPerfil() {
+                document.write("<h1>Perfil del empleado " + this.nombre + "</h1></br><pre>");
+                document.writeln("Nombre " + this.nombre);
+                document.writeln("Edad: " + this.edad);
+                document.writeln("Estudiando:  " + this.queestudia.curso + "  de " + this.queestudia.ciclo);
+                document.write("</pre>");
+            }
+//DEFINE EL OBJECTO Estudios
+            function estudios() {
+                this.ciclo = prompt("Ciclo: ", "DAM");
+                this.curso = prompt("Curso", "2");
+            }
+//DEFINE EL OBJECTO EMPLEADO
+            function empleado() {
+                this.nombre = prompt("Introduzca el nombre del empleado: ", "Nombre");
+                this.edad = prompt("Introduzca la edad de " + this.nombre, "00");
+                this.queestudia = new estudios();
+                this.mostrarPerfil = mostrarPerfil;
+            }
+        </script>
+    </head>
+    <body>
+        <div></div>
+    </body>
+    <script type="text/javascript">
+        nuevoEmpleado = new empleado();
+        nuevoEmpleado.mostrarPerfil();
+    </script>
+</html>

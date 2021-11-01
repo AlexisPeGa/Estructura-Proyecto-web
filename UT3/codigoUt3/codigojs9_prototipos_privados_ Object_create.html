@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Trabajando con Objetos javascript utilizando el operdador Object.create </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Crear objetos usando el método Object.create.</div>
+        <h3>Resultado</h3>
+        <pre id="resultado"></pre>
+
+        <script>
+            // Funciona para el tratamiento de errores
+            function ExceptionUsuario(mensaje) {
+                this.mensaje = mensaje;
+                this.nombre = "ExceptionUsuario";
+            }
+            //Definimos una function  que define la clase(prototipo)  con las propiedades y métodos 
+            var notas = {
+                // Funcion que llamaremos al crear el objeto para inicializar las propiedades. Constructor de 		//la clase
+                main: function (modulo, alumno, nota)
+                {
+		//Errores 
+        if (arguments.length < 2 || modulo === undefined || alumno === undefined || nota === undefined) {
+                        miExcepcionUsuario = new ExceptionUsuario("Faltan datos de la nota");
+                        throw miExcepcionUsuario;
+                    }
+
+                    // inicializamos Campos miembro del objeto(propiedades) con los datos recibidos como parámetros.
+                    this.modulo = modulo;
+                    this.alumno = alumno;
+                    this.nota = nota;
+                    this.examenes = {};// definimos un array en el que podemos añadir datos no definidos
+                    // como el módulo  o la nota
+                    return(this); // Devolvemos el objeto creado eb la function main
+                },
+                // Métodos
+             //    examenes: {},
+             
+                leernotas: function () {
+                    return '\nAlumno  : ' + this.alumno + "\n" +
+                            'Modulo  : ' + this.modulo + "\n" +
+                            'Nota  : ' + this.nota;+ "\n"
+                },
+                // amayusculas(); 
+                amayusculas: function () {
+                    var mayusculas = "";
+                    mayusculas = this.alumno;
+                    mayusculas = mayusculas.toUpperCase();
+                    this.alumno = this.alumno.toUpperCase();
+                }
+            };
+
+
+            try {
+		//Creamos un objeto de la clase por medio de Object.create
+                var alumno4 = Object.create(notas).main('smr1', 'Tomas', 9);
+                alumno4.amayusculas();
+                //Añadirmos datos al array examenes en formato propiedad:valor( e1:5)
+                alumno4.examenes.e1 = 5;
+                alumno4.examenes.e2 = 6;
+                var detalles = "";
+                 
+                
+         
+                for (examamen in alumno4.examenes)
+                {
+                    console.log(examamen + ": " + alumno4.examenes[examamen])
+                    resultado.innerText = resultado.innerText + examamen + ": " + alumno4.examenes[examamen]+"\n"
+                    detalles = detalles +"\n"+examamen + ": " + alumno4.examenes[examamen]
+                }
+                
+                console.log("ALUMNO4\n" + alumno4.leernotas()+"\nEXAMENES:\n"+detalles);
+                resultado.innerText = resultado.innerText +"\nnALUMNO4\n" + alumno4.leernotas()+"\nEXAMENES:\n"+detalles
+                //Creamos un objeto de la clase por medio de Object.create
+                var alumno5 = Object.create(notas).main('smr1', 9);
+                alumno5.amayusculas();
+                console.log("ALUMNO5\n" + alumno5.leernotas()+"\nEXAMENES:"+detalles);
+                resultado.innerText = resultado.innerText +"\nALUMNO5\n" + alumno5.leernotas()+"\nEXAMENES:"+detalles
+            } catch (excepcion) {
+                console.log(excepcion.mensaje, "Error:", excepcion.nombre); // pasa el objeto exception al manejador de errores
+                resultado.innerText = resultado.innerText +"\n"+excepcion.mensaje+"Error:"+ excepcion.nombre
+            }
+
+
+        </script>
+ 
+    </body>
+</html>

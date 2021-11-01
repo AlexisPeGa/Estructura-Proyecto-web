@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Trabajando con Objetos javascript utilizando el operdador Object.create</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="caja">Trabajando con Objetos javascript utilizando el operdador Object.create</div>
+        <h3>Resultado</h3>
+        <pre id="resultado"></pre>
+        <script>
+           
+            // Funciona para el tratamiento de errores
+            function ExceptionUsuario(mensaje) {
+                this.mensaje = mensaje;
+                this.nombre = "ExceptionUsuario";
+            }
+            //----------------------------------------
+       /*
+     var notasAlumno={};// Creamos un objeto sin prototipo. En el ejemplo anterior el prototipo lo creabamos aquí.
+    //Definimos el prototipo para el objeto  notasAlumno
+    Object.defineProperties(notasAlumno, {
+        */    
+    var notasAlumno={
+		// Propiedades
+                nombre:{
+                    value:"Fernando",
+                    writable:true,
+                    enumerable:true,
+                    configurable:true
+                },
+                modulo:{
+                    value:"dwec",
+                    writable:true,
+                    enumerable:true,
+                    configurable:true
+                },
+                nota:{
+                    value:8,
+                    writable:true,
+                    enumerable:true,
+                    configurable:true
+                },
+		// Definición de una función con los métodos get y set 
+                setgetNombre:{
+                    set: function(nuevoNombre){
+                    this.nombre=nuevoNombre;
+                },
+                 get:function(){
+                  return(this.nombre);
+                }
+            } 
+        }
+
+	    // Creamos un objeto a partir del prototipo con Object.create	
+            var alumno = Object.create(notasAlumno);
+	
+            // Leer datos de las propiedades directamente  
+            // ESTE METODO 
+              console.log("Nombre "+alumno["nombre"].value);
+              resultado.innerText = resultado.innerText + "Nombre "+alumno["nombre"].value +"\n";
+            //o  ESTE OTREO METODO 
+             console.log("Prototipo: "+alumno.nombre.value);
+             resultado.innerText = resultado.innerText + "Prototipo: "+alumno.nombre.value+"\n";
+             // Cambiar el nombre mediante la function setgetNombre SET
+             alumno.setgetNombre="Angel";
+             // Leer el nombre mediante setgetNombre GET
+             console.log("Prototipo: "+alumno.setgetNombre);
+             resultado.innerText = resultado.innerText +"Prototipo: "+alumno.setgetNombre +"\n";
+            // devuelve undefined porque la propiedad fechaRecuperacion no existe
+            
+            console.log("fechaRecuperacion Alumno "+alumno["fechaRecuperacion"]);
+            resultado.innerText = resultado.innerText +"fechaRecuperacion Alumno "+alumno["fechaRecuperacion"]+"\n";
+             // AÑADIR la PROPIEDAD fechaRecuperacion  AL OBEJTO
+             
+              Object.defineProperties(notasAlumno , {fechaRecuperacion:{
+                    value:"2/9/2015",
+                    writable:true,
+                    enumerable:true,
+                    configurable:true
+                }
+                });
+                //Aunque en el momento de crear alumno, no tenia la propiedad fechaRecuperacion
+                //después de añadirla al prototipo ya la podemos usar
+             
+                alumno["fechaRecuperacion"]="23/9/2015";
+               console.log("fechaRecuperacion Alumno "+alumno["fechaRecuperacion"]);  
+               resultado.innerText = resultado.innerText + "fechaRecuperacion Alumno "+alumno["fechaRecuperacion"]+"\n";
+             var alumno1 = Object.create(notasAlumno);
+             console.log("fechaRecuperacion Alumno 1"+alumno1["fechaRecuperacion"]);
+             resultado.innerText = resultado.innerText + "fechaRecuperacion Alumno 1"+alumno1["fechaRecuperacion"]+"\n";
+             //http://www.todojs.com/ref/javascript/object.html#_Object_create
+        
+             var descriptor =Object.getOwnPropertyDescriptor(notasAlumno, "nombre");
+             console.dir(descriptor );
+             resultado.innerText = resultado.innerText +descriptor+"\n"
+             console.dir(descriptor.value );
+             resultado.innerText = resultado.innerText +descriptor.value+"\n"
+             console.dir("Value : "+descriptor.value.value);
+             resultado.innerText = resultado.innerText +descriptor.value.value+"\n"
+            //-------------------------------------------------------------
+           for (oo in descriptor.value)
+           {
+               console.log(oo );
+               resultado.innerText = resultado.innerText +  oo  +"\n"
+               
+           }
+     
+        </script>
+    
+    </body>
+</html>

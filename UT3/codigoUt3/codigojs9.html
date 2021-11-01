@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+ // ESTE CODIGO TIENE MUCHA TELA
+<html>
+    <head>
+        <title>Trabajando con Objetos javascript utilizando el operdador new</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    </head>
+    <body>
+        <div>Trabajando con Objetos javascript utilizando el operdador new</div>
+        <h3>Resultado</h3>
+        <pre id="resultado"></pre>
+
+        <script>
+            // Función para el tratamiento de errores
+            function ExceptionUsuario(mensaje) {
+                this.mensaje = mensaje;
+                this.nombre = "ExceptionUsuario";
+            }
+            //Definimos la variable con la clase 
+            var notas = function (modulo, alumno, nota)
+            {// Constructor de la clase . Campos miembro
+                if (arguments.length < 2) {
+                    // Lanzamos la excepcion de capturar error para cuando rguments.length < 2)
+                miExcepcionUsuario = new ExceptionUsuario("\nFaltan datos de la nota\n");
+                throw miExcepcionUsuario;
+                }
+                // inicializamos Campos miembro del objeto con los datos recibidos como parámetros.
+                this.modulo = modulo;
+                this.alumno = alumno;
+                this.nota = nota;
+                // Métodos
+                this.leernotas = function () {
+                    return 'Alumno  : ' + this.alumno + "\n" +
+                            'Modulo  : ' + this.modulo + "\n" +
+                            'Nota  : ' + this.nota;
+                };
+            };
+            // Creamos un objeto de tipo notas, pasandole correctamente los parametros
+            // No se produce error.
+            try {
+                var alumno1 = new notas("DAI", "Pepe", 8);
+                console.log(alumno1.leernotas());
+                resultado.innerText= resultado.innerText +alumno1.leernotas() ;
+            } catch (excepcion) {              
+                console.log(excepcion.mensaje, "Error:", excepcion.nombre);
+                resultado.innerText= resultado.innerText+"\n"+excepcion.mensaje+ "Error:"+ excepcion.nombre +"\n";
+		 // pasa el objeto exception al manejador de errores
+            }
+            try {
+          // Creamos un objeto de tipo notas, pasandole incorrectamente los parametros, 
+          // faltan el modulo y la edad. Se produce error.
+                var alumno2 = new notas("Juan");
+                console.log(alumno2.leernotas());
+                resultado.innerText= resultado.innerText+alumno2.leernotas() 
+
+            } catch (excepcion) {              
+                console.log(excepcion.mensaje, "Error:", excepcion.nombre); 
+                resultado.innerText= resultado.innerText+"\n"+excepcion.mensaje+"Error:"+excepcion.nombre +"\n"
+		// pasa el objeto exception al manejador de errores
+            }
+
+            // Añadir una propiedad al objeto alumno1 ya creado . Esta propiedad solo 		//la tiene el objeto alumno1
+            alumno1.fechaRecuperacion = "12/02/2016";
+            console.log(alumno1.leernotas());
+            resultado.innerText= resultado.innerText+alumno1.leernotas() 
+             // Agregando una función nueva. Este método solo lo tiene el objeto 			//alumno1
+            alumno1.leerConFechaRecuperacion = function () {
+             return this.leernotas() + '\nFecha De Recuperación:  ' +			this.fechaRecuperacion;
+            };
+            console.log("Datos del alumno con Fecha De Recuperación\n " +  alumno1.leerConFechaRecuperacion());  
+            resultado.innerText= resultado.innerText+"\nDatos del alumno con Fecha De Recuperación\n " 
+            + alumno1.leerConFechaRecuperacion()+"\n" 
+       </script>
+    </body>
+</html>

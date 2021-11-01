@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trabajando con Objetos javascript utilizando Prototipos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div>Trabajando con Objetos javascript utilizando Prototipos</div>
+
+    <h3>Resultado</h3>
+    <pre id="resultado"></pre>
+
+    <script>
+        // Funciona para el tratamiento de errores
+        function ExceptionUsuario(mensaje) {
+            this.mensaje = mensaje;
+            this.nombre = "ExceptionUsuario";
+        }
+
+        //Definimos la variable con la clase 
+        var notas = function (modulo, alumno, nota) {// Constructor de la clase . Campos miembro
+            if (arguments.length < 2) {
+                // Lanzamos la excepcion de capturar error para cuando rguments.length < 2)
+                miExcepcionUsuario = new ExceptionUsuario("Faltan datos de la nota");
+                throw miExcepcionUsuario;
+            }
+            // inicializamos Campos miembro del objeto con los datos recibidos como parámetros.
+            this.modulo = modulo;
+            this.alumno = alumno;
+            this.nota = nota;
+            // Métodos
+            this.leernotas = function () {
+                return 'Alumno  : ' + this.alumno + "\n" +
+                    'Modulo  : ' + this.modulo + "\n" +
+                    'Nota  : ' + this.nota + "\n";
+            };
+        };
+        // Creamos un objeto de tipo notas, pasandole correctamente los parametros
+        // No se produce error.
+        try {
+            var alumno1 = new notas("DAI", "Pepe", 8);
+            console.log(alumno1.leernotas());
+            resultado.innerText = resultado.innerText + alumno1.leernotas()
+        } catch (excepcion) {
+
+            console.log(excepcion.mensaje, "Error:", excepcion.nombre); // pasa el objeto exception al manejador de errores
+            resultado.innerText = resultado.innerText + excepcion.mensaje + "Error:" + excepcion.nombre + "\n"
+        }
+
+        try {
+            // Creamos un objeto de tipo notas, pasandole incorrectamente los parametros, 
+            // faltan el modulo y la edad. Se produce error.
+            var alumno2 = new notas("Juan");
+            console.log(alumno2.leernotas());
+            resultado.innerText = resultado.innerText + alumno2.leernotas()
+
+        } catch (excepcion) {
+
+            console.log(excepcion.mensaje, "Error:", excepcion.nombre); // pasa el objeto exception al manejador de errores
+            resultado.innerText = resultado.innerText + excepcion.mensaje + "Error:" + excepcion.nombre + "\n"
+        }
+        // Añadir una propiedad al prototipo de la clase notas y con esto a todos los objetos creador por medio del operador new. Esta propiedad la tendrán todos los obetos incluso los que ya estubieran creados previamente.
+        notas.prototype.fechaRecuperacion = "";
+        console.log(alumno1.leernotas());
+        resultado.innerText = resultado.innerText + alumno1.leernotas()
+        // Agregando una función nueva  al prototipo de la clase notas. Este método lo tienen todos los objetos instanciados con new sobre la clase notas.
+        notas.prototype.leerConFechaRecuperacion = function () {
+            return this.leernotas() + '\nFecha De Recuperación:  ' + this.fechaRecuperacion;
+        };
+        alumno1.fechaRecuperacion = "12/12/12";
+        console.log("Datos del alumno con Fecha De Recuperación\n " + alumno1.leerConFechaRecuperacion());
+        resultado.innerText = resultado.innerText + "Datos del alumno con Fecha De Recuperación\n " + alumno1.leerConFechaRecuperacion()
+
+        try {
+            var alumno3 = new notas("DAW", "Oscar", 4);
+            console.log("\nALUMNO3\n" + alumno3.leernotas());
+            resultado.innerText = resultado.innerText + "\nALUMNO3\n" + alumno3.leernotas()
+            alumno3.fechaRecuperacion = "12/02/2017";
+            console.log("Datos del alumno con Fecha De Recuperación\n " + alumno3.leerConFechaRecuperacion());
+            resultado.innerText = resultado.innerText + "Datos del alumno con Fecha De Recuperación\n " + alumno3.leerConFechaRecuperacion()
+        } catch (excepcion) {
+
+            console.log(excepcion.mensaje, "Error:", excepcion.nombre); // pasa el objeto exception al manejador de errores
+            resultado.innerText = resultado.innerText + excepcion.mensaje + "Error:" + excepcion.nombre
+        }
+
+    </script>
+
+</body>
+
+</html>

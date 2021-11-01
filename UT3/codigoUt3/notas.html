@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            div{margin-left: 50px;margin-top: 50px}   
+            b{width:30%;
+              text-align: right;
+              color:red;
+              margin-right:20px;
+            }  
+            input{
+                margin-left: 50px; 
+            }
+        </style>
+        <script type="text/javascript">
+            listas = new Array();
+
+            var c = 0;
+            pos = 0;
+            function objetonotas(alumno, modulo, nota)
+            {
+                this.alumno = alumno;
+                this.modulo = modulo;
+                this.nota = nota;
+                this.graba = grabaalumno;
+                this.leerAlumno = leerAlumno;
+            }
+            function grabarA()
+            {
+                a = calumno.value;
+                m = cmodulo.value;
+                n = cnota.value;
+                al = new objetonotas(a, m, n);
+                al.graba()
+            }
+            function grabaalumno()
+            {
+                c = c + 1;
+                pos = c;
+                listas[c] = this;
+
+            }
+            function leerAlumno()
+            {
+                calumno.value = this.alumno;
+                cmodulo.value = this.modulo;
+                cnota.value = this.nota;
+            }
+            function siguiente()
+            {
+                pos = pos + 1;
+                if (pos > c) {
+                    pos = c;
+                }
+                al = new objetonotas();
+                al = listas[pos];
+                al.leerAlumno();
+            }
+            function anterior()
+            {
+                pos = pos - 1;
+                if (pos < 1) {
+                    pos = 1;
+                }
+                al = new objetonotas();
+                al = listas[pos];
+                al.leerAlumno();
+            }
+            function listar()
+            {
+                var textoHtml = "<table border='1'>";
+                for (i = 1; i <= c; i++)
+                {
+                    textoHtml = textoHtml + "<tr><td width='33%'><B>Alumno :</B>" + listas[i].alumno + "</td><td width='33%'><B>Modulo :</B>" + listas[i].modulo + "</td><td width='33%'><b> Nota :</B>" + listas[i].nota + "</tr>";
+                }
+                textoHtml = textoHtml + ("</table>");
+                alert(textoHtml);
+                document.getElementById("cajalistado").innerHTML = textoHtml;
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <b>Nombre</b>
+            <input id="calumno" type="text"><br><br>
+            <b>Modulo </b>
+            <input   id="cmodulo" type="text"><br>  <br>
+            <b>Nota   </b>
+            <input style="position:relative;left:20px" id="cnota" type="number"><br>
+        </div>
+        </br>
+        <div>
+            <input name="Grabar" type="button" value="Grabar Notas" onClick="grabarA()">
+            <input name="boorra" type="reset" id="boorra" value="Nueva Calificación" onClick="cmodulo.value = '';
+                    cnota.value = '';"> 
+            <br><br>
+            <hr style="margin-left: -50px;">
+            <input name="siguiente" type="button" value="Siguiente" onClick="siguiente()">
+            <input name="anterior" type="button" value="Anterior" onClick="anterior()">
+            <input name="Listado" type="button" value="Listado" onClick="listar()">
+        </div>
+        </br>
+        <div id="cajalistado">
+        </div>
+    </body>
+</html>
