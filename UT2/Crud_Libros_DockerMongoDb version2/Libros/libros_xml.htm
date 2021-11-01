@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<xml id="datosXml" src="gimnasio.xml"></xml>
+	<script src="datos.js"></script>
+	<title>Datos Arboles</title>
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+	 
+		datos = new Array();
+
+		var contador = 0; var pos = 0;
+
+		function datosgimnasio(nombre, telefono, calle, latitud, longitud) {
+			this.nombre = nombre;
+			this.telefono = telefono;
+			this.calle = calle;
+			this.latitud = latitud;
+			this.longitud = longitud;
+
+			this.guarda = guardadatos;
+
+		}
+
+		function guardadatos() {
+			alert(this.nombre);
+			datos[contador] = this;
+			contador = contador + 1;
+			pos = contador;
+		}
+
+
+		function leerdatos(c) {
+			var da = new datosgimnasio();
+			da = datos[c];
+			document.write("<tr><td>" + da.nombre + "</td><td>" + da.calle + "</td><td>" + da.telefono + "</td><td>" + da.latitud + "</td><td>" + da.longitud + "</td></tr>");
+
+		}
+
+
+
+
+		//////////////////////////////////// G R A B A R //////////////////////////////////
+		function grabar() {
+			var nombre = document.getElementById("inombre").value;
+			var telefono = document.getElementById("telefono").value;
+			var calle = document.getElementById("calle").value;
+			var latitud = document.getElementById("latitud").value;
+			var longitud = document.getElementById("longitud").value;
+
+			gimnasio = new datosgimnasio(nombre, telefono, calle, latitud, longitud);
+			gimnasio.guarda();
+
+
+		}
+
+		//////////////////////////////////// G R A B A R //////////////////////////////////
+
+		/*
+		while(especie!='*')
+		{
+		
+		poblacion=prompt("Población");
+		zona=prompt("Zona");
+		latitud=prompt("latitud");
+		longitud=prompt("longitud");
+		tamaño=prompt("Tamaño");
+		estado=prompt("Estado");
+		
+		arbol=new datosArbol(especie,poblacion,zona,latitud,longitud,tamaño,estado);
+		arbol.guarda();
+		 
+		especie= prompt("Especie(*Fin)","Pino");
+		}*/
+
+		// //////////////////// i m p r i m i r /////////////////////////
+		function imprimir() {
+			document.write("<h1>Listado de Gimnasios</h1><table border='2'>");
+			for (c = 0; c < contador; c++) {
+				leerdatos(c);
+
+			}
+			document.write("</table>");
+		}
+		// //////////////////// i m p r i m i r /////////////////////////
+
+		function siguiente() {
+			pos = pos + 1; visualiza(pos);
+		}
+		function anterior() {
+			pos = pos - 1; visualiza(pos);
+		}
+		function visualiza(pos) {
+			gimnasio = new datosgimnasio();
+			gimnasio = datos[pos];
+			if(gimnasio==undefined){return;}
+		
+			document.getElementById("inombre").value = gimnasio.nombre;
+
+			document.getElementById("telefono").value = gimnasio.telefono;
+			document.getElementById("calle").value = gimnasio.calle;
+			document.getElementById("latitud").value = gimnasio.latitud;
+			document.getElementById("longitud").value = gimnasio.longitud;
+
+		}
+		function imprimirentabla() {
+
+			for (c = 0; c < contador; c++) {
+				var da = new datosgimnasio();
+				da = datos[c];
+				var tabla = document.getElementById("tabla");
+				var cuerpo = document.getElementById("cuerpo");
+				linea = document.createElement("tr");
+				parrafo = document.createElement("p");
+				dato = document.createTextNode(da.nombre);
+				Columna = document.createElement("td");
+				Columna.appendChild(dato);
+				linea.appendChild(Columna);
+
+				parrafo = document.createElement("p");
+				dato = document.createTextNode(da.calle);
+				Columna = document.createElement("td");
+				Columna.appendChild(dato);
+				linea.appendChild(Columna)
+
+
+				parrafo = document.createElement("p");
+				dato = document.createTextNode(da.telefono);
+				Columna = document.createElement("td");
+				Columna.appendChild(dato);
+				linea.appendChild(Columna)
+				parrafo = document.createElement("p");
+				dato = document.createTextNode(da.latitud);
+				Columna = document.createElement("td");
+				Columna.appendChild(dato);
+				linea.appendChild(Columna)
+
+				parrafo = document.createElement("p");
+				dato = document.createTextNode(da.longitud);
+				Columna = document.createElement("td");
+				Columna.appendChild(dato);
+				linea.appendChild(Columna)
+
+				cuerpo.appendChild(linea);
+			}
+			tabla.appendChild(cuerpo);
+		}
+		function cargaXml() {
+
+
+
+
+			var codigo = new DOMParser();
+			var myXml = codigo.parseFromString(datosFichero, "text/xml");
+
+
+			var anombre = new Array();
+			var acalle = new Array();
+			var atelefono = new Array();
+			var alatitud = new Array();
+			var alongitud = new Array();
+
+			anombre = myXml.getElementsByTagName("nombre");
+			acalle = myXml.getElementsByTagName("calle");
+			atelefono = myXml.getElementsByTagName("telefono");
+			alatitud = myXml.getElementsByTagName("latitud");
+			alongitud = myXml.getElementsByTagName("longitud");
+			//alert(anombre.length);
+			for (var i = 0; i < anombre.length; i++) {
+				// alert(anombre);
+				p = new datosgimnasio(anombre.item(i).firstChild.nodeValue, acalle.item(i).firstChild.nodeValue, atelefono.item(i).firstChild.nodeValue, alatitud.item(i).firstChild.nodeValue, alongitud.item(i).firstChild.nodeValue);
+
+				datos[i] = p;
+
+			}
+			c = i; contador = c;
+			visualiza(0);
+		}
+
+
+	</script>
+	<style type="text/css">
+		h1 {
+			text-align: center;
+			font-family: "Courier New", Courier, "espacio sencillo";
+			font-size: 16px;
+			background-color: #CCFF99;
+
+		}
+	</style>
+</head>
+
+<body onload="cargaXml()">
+
+	<div style="height: 249px">
+		<h1>Datos Gimnasios</h1>
+
+		<table style="width: 100%">
+			<tr>
+				<td style="width: 146px">nombre</td>
+				<td>
+
+					<input id="inombre" type="text" style="width: 257px" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 146px; height: 26px;">calle</td>
+
+				<td style="height: 26px">
+
+					<input id="calle" type="text" style="width: 377px" />
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 146px">telefono&nbsp;</td>
+				<td>
+
+					<input id="telefono" type="text" style="width: 241px; height: 19px;" />
+				</td>
+			</tr>
+
+			<tr>
+				<td style="width: 146px">latitud</td>
+				<td>
+
+					<input id="latitud" type="text" style="width: 155px" />
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 146px">Número de longitud</td>
+				<td>
+
+
+					<input id="longitud" type="text" style="width: 158px" />
+				</td>
+			</tr>
+			<tr>
+
+				<td style="width: 146px">&nbsp;</td>
+				<td>
+
+					&nbsp;</td>
+			</tr>
+		</table>
+
+
+		<input name="Button1" type="button" value="Grabar Datos" onclick="grabar();" />
+
+
+		<input name="Button2" type="button" value="Imprimir Datos" onclick="imprimir();" />
+		<input name="Button5" type="button" value="Imprimir en la Tbala" style="width: 227px"
+			onclick="imprimirentabla()" />
+
+		<input name="Button3" type="button" value="Siguiente" onclick="siguiente()" />
+		<input name="Button4" type="button" value="Anterior" onclick="anterior()" /><br />
+
+	</div>
+	<table border="2px" style="width: 100%;border:2px fuchsia solid" id="tabla">
+		<tbody id="cuerpo">
+			<tr>
+				<td style="height: 25px">nombre</td>
+				<td style="height: 25px">calle</td>
+				<td style="height: 25px">telefono</td>
+				<td style="width: 482px; height: 25px;">latitud</td>
+				<td style="height: 25px">Nº DE longitud</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="c:\windows/system32/notepad.exe">notepad</a>
+</body>
+
+</html>
