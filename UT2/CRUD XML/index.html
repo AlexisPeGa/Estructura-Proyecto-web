@@ -89,12 +89,20 @@
                 &nbsp;</td>
             </tr>
           </table>
-      
-      
+          <!--cargar el xml-->
+          <input type="file" name="files" id="files">
+          <label for="files">
+
+          </label>
         </body>
         <footer>
           <p>comentarios (0)</p>
         </footer>
+      </article>
+      <article>
+        <div style="height: 300px; width: 100%;" class="map_canvas" id="map_canvas">
+
+        </div>
       </article>
       <article>
         <header>
@@ -124,7 +132,14 @@
       Desarrollo de Aplicaciones Web(DAW) © CIFP Santa Catalina
     </footer>
   </div>
+
+<!--Licencia de google maps-->
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeNRBEIWYeWRRvY8On_9pkSD1_J_zLykQ&libraries=geometry">
+</script>
+
   <script src="funciones.js"></script>
+  <script src="mapa.js"></script>
 </body>
 
 </html>
