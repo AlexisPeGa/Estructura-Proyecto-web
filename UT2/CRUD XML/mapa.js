@@ -71,10 +71,10 @@ function leeDireccion( latlng) {
 
 function MuestraDireccion(latlng,direccion) {
  
-    document.getElementById('calle').value= direccion;
+    document.getElementById('Calle').value= direccion;
    alert(direccion);
-    document.getElementById('latitud').value=latlng.lat();
-    document.getElementById('longitud').value=latlng.lng();
+    document.getElementById('Latitud').value=latlng.lat();
+    document.getElementById('Longitud').value=latlng.lng();
 }
 
 //carga el script de inicio del mapa

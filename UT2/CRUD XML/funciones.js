@@ -1,5 +1,5 @@
 window.onload = function () {
-    cargaXml();
+    //cargaXml();
 
     bGrabar.addEventListener("click", grabar, false);
     bModificar.addEventListener("click", modificar, false);
@@ -7,6 +7,7 @@ window.onload = function () {
     bSiguiente.addEventListener("click", siguiente, false);
     bAnterior.addEventListener("click", anterior, false);
     bTabla.addEventListener("click", imprimirentabla, false);
+    files.addEventListener("change", leeFicheroLocal, true);
 }
 var datos = new Array();
 
@@ -62,7 +63,7 @@ function modificar() {
     var LONGITUD = document.getElementById("Longitud").value;
     gimnasio = new datosgimnasio(NOMBRE, CALLE, TELEFONO, LATITUD, LONGITUD);
     datos[pos] = gimnasio;
-    
+
 }
 
 function borrar() {
@@ -155,7 +156,7 @@ function imprimirentabla() {
 
     tabla.appendChild(cuerpo);
 }
-function cargaXml() {
+/*function cargaXml() {
 
 
 
@@ -185,4 +186,61 @@ function cargaXml() {
     }
     c = i; contador = c;
     visualiza(0);
+}*/
+
+
+function leeFicheroLocal(evt) {
+
+
+    var ficheros = evt.target.files; // FileList object
+
+    var file = ficheros[0];
+
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        datos = new Array();
+        var contenido = event.target.result;
+        //  alert("contenido" + contenido)
+        parser = new DOMParser();
+        myXml = parser.parseFromString(contenido, "text/xml");
+        // alert("myXml" + myXml)
+
+        var aNombre = new Array();
+        var aCalle = new Array();
+        var aTelefono = new Array();
+        var aLatitud = new Array();
+        var aLongitud = new Array();
+
+        aNombre = myXml.getElementsByTagName("nombre");
+        aCalle = myXml.getElementsByTagName("calle");
+        aTelefono = myXml.getElementsByTagName("telefono");
+        aLatitud = myXml.getElementsByTagName("latitud");
+        aLongitud = myXml.getElementsByTagName("longitud");
+        //alert(aindice.length);
+        for (var i = 0; i < aNombre.length; i++) {
+            // alert(aisbn);
+            p = new datosgimnasio(aNombre.item(i).firstChild.nodeValue, aCalle.item(i).firstChild.nodeValue, aTelefono.item(i).firstChild.nodeValue, aLatitud.item(i).firstChild.nodeValue, aLongitud.item(i).firstChild.nodeValue);
+
+            datos[i] = p;
+
+        }
+        c = i; contador = c;
+        visualiza(0);
+
+        // En esta fucntión generaTablaLocales es donde yo genero la tabla y los marcadores del mapa
+
+        //generaTablaLocales();
+        
+        // Permite que se ejecute de nuevo el evento change, ya que siempre trabajamos con el mismo fichero xml
+        evt.target.value = ''
+       
+    }
+
+    reader.onerror = function (event) {
+        console.error("Error de lectura del fichero" + event.target.error.code);
+    };
+
+    reader.readAsText(file);
+
+
 }
