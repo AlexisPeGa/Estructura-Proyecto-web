@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="ahorcado.png" />
+        
+    </head>
+    <body>
+        <div>
+            <input type="button" id="bGrabar" value="Grabar Registro"/> 
+            <input type="button" id="bBorrar" value="Borrar Registro"/>
+            <input type="button" id="bSiguiente" value="Siguiente Registro"/>
+             <input type="button" id="bAnterior" value="Anterior Registro"/>
+             <input type="button" id="bListado" value="Listado Alumnos"/></br></br></br>
+        </div>
+        <div>
+            Matricula Alumno<input type="text" id="cMatricula"/></br>
+            Nombre Alumno<input type="text" id="cNombre"/></br>
+            Ciclo  <input type="text" id="cCiclo"/></br>
+            Modulo<input type="text" id="cModulo"/></br>
+            Nota<input type="text" id="cNota"/></br>
+        </div>
+         <img src="ahorcado.png" id="imagen" title="ahorcado" alt="ahorcado"/>
+         <div id="cSalida">
+             
+         </div>
+         <script>
+         /*     var alumnos = new Array();
+            var totalRegistros = 0;
+            var registroActual = 0;
+            var alumnoActual = null;
+            function registro(cMatricula, cNombre, cCiclo, cModulo, cNota)
+            {
+                this.Matricula = cMatricula;
+                this.Nombre = cNombre;
+                this.Ciclo = cCiclo;
+                this.Modulo = cModulo;
+                this.Nota = cNota;
+                this.grabar = GrabarAlumno;
+                this.borrar = BorrarAlumno;
+                this.siguiente = SiguienteAlumno;
+                this.siguiente = AnteriorAlumno;
+                this.listado = ListarAlumnos;
+            }
+            function GrabarAlumno()
+            {alert('Grabar')
+                var cMatricula = document.querySelector("#cMatricula").value;
+                var cNombre = document.querySelector("#cNombre").value;
+                var cCiclo = document.querySelector("#cCiclo").value;
+                var cModulo = document.querySelector("#cModulo").value;
+                var cNota = document.querySelector("#cNota").value;
+                var alumno = new registro(cMatricula, cNombre, cCiclo, cModulo, cNota);
+                
+                alumnos.push(alumno);
+                
+                totalRegistros=alumnos.length;
+                registroActual = totalRegistros;
+                 alert(registroActual)
+            }
+            function SiguienteAlumno()
+            {
+                registroActual++;
+                if (registroActual > totalRegistros)
+                {
+                    registroActual = totalRegistros;
+                }
+                alumnoActual = alumnos[registroActual];
+                visualiazaRegistro();
+            }
+            function AnteriorAlumno()
+            {
+                registroActual--;
+                 alert(registroActual)
+                if (registroActual < 0)
+                {
+                    registroActual = 1;
+                }
+                 alumnoActual = alumnos[registroActual];
+                  alert(alumnoActual.Matricula)
+                visualiazaRegistro();
+            }
+            function  visualiazaRegistro()
+            {
+                var cMatricula = document.querySelector("#cMatricula");
+                cMatricula.value = alumnoActual.Matricula;
+                var cNombre = document.querySelector("#cNombre");
+                cNombre.value = alumnoActual.Nombre;
+                var cCiclo = document.querySelector("#cCiclo");
+                cCiclo.value = alumnoActual.Ciclo;
+                var cModulo = document.querySelector("#cModulo");
+                cModulo.value = alumnoActual.Modulo;
+                var cNota = document.querySelector("#cNota");
+                cNota.value = alumnoActual.Nota;
+            }
+            function BorrarAlumno()
+            {
+                
+            }
+            function ListarAlumnos()
+            {
+                alumnos[registroActual]=undefined;
+            }
+             var boGrabar = document.querySelector("#bGrabar");
+             boGrabar.addEventListener("click", GrabarAlumno, false);
+
+  
+
+            var bBorrar = document.querySelector("#bBorrar");
+            bBorrar.addEventListener("click", BorrarAlumno, false);
+
+            var bSiguiente = document.querySelector("#bSiguiente");
+            bSiguiente.addEventListener("click", SiguienteAlumno, false);
+
+            var bAnterior = document.querySelector("#bAnterior");
+            bAnterior.addEventListener("click", AnteriorAlumno, false);
+
+            var bListado = document.querySelector("#bListado");
+            bListado.addEventListener("click", ListarAlumnos, false);
+*/
+         </script>
+          <script  type="text/javascript" src="crud.js"></script>
+    </body>
+</html>

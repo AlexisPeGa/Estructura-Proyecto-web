@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Crear y descargar archivos con Javascript</title>
+        <link rel="icon" type="image/png" href="crud.png" />
+
+        <script>
+            var aisbn = new Array();
+            var atitulo = new Array();
+            var aautor = new Array();
+            var aeditorial = new Array();
+            var apaginas = new Array();
+            datos = new Array();
+
+            var contador = 0;
+            var pos = 0;
+
+            function datoslibro(ISBN, Autor, Titulo, Editorial, Paginas)
+            {
+                this.ISBN = ISBN;
+                this.Autor = Autor;
+                this.Titulo = Titulo;
+                this.Editorial = Editorial;
+                this.Paginas = Paginas;
+
+                this.guarda = guardadatos;
+
+            }
+
+            function guardadatos()
+            {
+                alert(this.ISBN);
+                datos[contador] = this;
+                contador = contador + 1;
+                pos = contador;
+            }
+
+
+            function leerdatos(c)
+            {
+                var da = new datoslibro();
+                da = datos[c];
+                document.write("<tr><td>" + da.ISBN + "</td><td>" + da.Titulo + "</td><td>" + da.Autor + "</td><td>" + da.Editorial + "</td><td>" + da.Paginas + "</td></tr>");
+
+            }
+
+
+
+
+//////////////////////////////////// G R A B A R //////////////////////////////////
+            function grabar()
+            {
+                var ISBN = document.getElementById("iISBN").value;
+                var Autor = document.getElementById("Autor").value;
+                var Titulo = document.getElementById("Titulo").value;
+                var Editorial = document.getElementById("Editorial").value;
+                var Paginas = document.getElementById("Paginas").value;
+
+                libro = new datoslibro(ISBN, Autor, Titulo, Editorial, Paginas);
+                libro.guarda();
+
+
+            }
+            function siguiente()
+            {
+                pos = pos + 1;
+                visualiza(pos);
+            }
+            function anterior()
+            {
+                pos = pos - 1;
+                visualiza(pos);
+            }
+            function visualiza(pos)
+            {
+                libro = new datoslibro();
+                libro = datos[pos];
+                // var elll=document.getElementById("ISBN");
+                //  elll=libro.ISBN;
+                document.getElementById("iISBN").value = libro.ISBN;
+
+                document.getElementById("Autor").value = libro.Autor;
+                document.getElementById("Titulo").value = libro.Titulo;
+                document.getElementById("Editorial").value = libro.Editorial;
+                document.getElementById("Paginas").value = libro.Paginas;
+
+            }
+            function imprimirentabla()
+            {
+
+                for (c = 0; c < contador; c++)
+                {
+                    var da = new datoslibro();
+                    da = datos[c];
+                    var tabla = document.getElementById("tabla");
+                    var cuerpo = document.getElementById("cuerpo");
+                    linea = document.createElement("tr");
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(da.ISBN);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna);
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(da.Titulo);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(da.Autor);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(da.Editorial);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(da.Paginas);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+                    cuerpo.appendChild(linea);
+                }
+                tabla.appendChild(cuerpo);
+            }
+
+            function descargarArchivo(contenidoEnBlob, nombreArchivo) {
+                
+                //creamos un FileReader para leer el Blob
+                var reader = new FileReader();
+                //Definimos la función que manejará el archivo
+                //una vez haya terminado de leerlo
+                reader.onload = function (event) {
+                    //Usaremos un link para iniciar la descarga 
+                    
+                    var save = document.createElement('a');
+                    save.href = event.target.result;
+                    save.target = '_blank';
+                    //Truco: así le damos el nombre al archivo 
+                    save.download = nombreArchivo || 'archivo.dat';
+                    var clicEvent = new MouseEvent('click', {
+                        'view': window,
+                        'bubbles': true,
+                        'cancelable': true
+                    });
+                    //Simulamos un clic del usuario
+                    //no es necesario agregar el link al DOM.
+                    save.dispatchEvent(clicEvent);
+                    //Y liberamos recursos...
+                    (window.URL || window.webkitURL).revokeObjectURL(save.href);
+                };
+                //Leemos el blob y esperamos a que dispare el evento "load"
+                reader.readAsDataURL(contenidoEnBlob);
+            }
+            ;
+
+            function obtenerDatos() {
+                alert(datos.length)
+                var objetoDatos = "";
+                datos.forEach(function (libro)
+                {
+                    objetoDatos = objetoDatos + "{" +
+                            "ISBN:" + document.getElementById("iISBN").value + "," +
+                            "Autor:" + document.getElementById("Autor").value + "," +
+                            "Titulo:" + document.getElementById("Titulo").value + "," +
+                            "Editorial:" + document.getElementById("Editorial").value + "," +
+                            "Paginas:" + document.getElementById("Paginas").value + "},"
+                });
+                return {objetoDatos
+
+                            /* ISBN: document.getElementById("iISBN").value,
+                             Autor: document.getElementById("Autor").value,
+                             Titulo: document.getElementById("Titulo").value,
+                             Editorial: document.getElementById("Editorial").value,
+                             Paginas: document.getElementById("Paginas").value*/
+                };
+            }
+            ;
+            function escaparXML(cadena) {
+                if (typeof cadena !== 'string') {
+                    return '';
+                }
+                ;
+                cadena = cadena.replace('&', '&amp;')
+                        .replace('<', '&lt;')
+                        .replace('>', '&gt;')
+                        .replace('"', '&quot;');
+                return cadena;
+            }
+            ;
+            function generarTexto() {
+                var texto = [];
+                var texto = [];
+                texto.push('<?xml version="1.0" encoding="UTF-8" ?>\n');
+                texto.push('Biblioteca');
+                var c = -1;
+                for (c = 0; c < datos.length; c++) {
+
+                    var da = new datoslibro();
+
+                    da = datos[c];
+
+                    texto.push(escaparXML(da.ISBN));
+                    texto.push('\t');
+
+                    texto.push(escaparXML(da.Titulo));
+                    texto.push('\t');
+
+                    texto.push(escaparXML(da.Autor));
+                    texto.push('\t');
+
+                    texto.push(escaparXML(da.Editorial));
+                    texto.push('\t');
+
+                    texto.push(escaparXML(da.Pagina));
+
+                    texto.push('\n');
+
+                }
+
+                //El constructor de Blob requiere un Array en el primer 
+                //parámetro así que no es necesario usar toString. El 
+                //segundo parámetro es el tipo MIME del archivo
+                return new Blob(texto, {
+                    type: 'text/plain'
+                });
+            }
+            ;
+            function generarXml() {
+                var texto = [];
+                texto.push('<?xml version="1.0" encoding="UTF-8" ?>\n');
+                texto.push('<libros>\n');
+                var c = -1;
+                for (c = 0; c < datos.length; c++) {
+  
+                    var da = new datoslibro();
+
+                    da = datos[c];
+                    texto.push('<libro>\n');
+                    texto.push('<isbn>\n');
+                    texto.push(escaparXML(da.ISBN));
+                    texto.push('</isbn>\n');
+                    texto.push('<titulo>\n');
+                    texto.push(escaparXML(da.Titulo));
+                    texto.push('</titulo>\n');
+                    texto.push('<autor>\n');
+                    texto.push(escaparXML(da.Autor));
+                    texto.push('</autor>\n');
+                    texto.push('<editorial>\n');
+                    texto.push(escaparXML(da.Editorial));
+                    texto.push('</editorial>\n');
+                    texto.push('<paginas>\n');
+                    texto.push(escaparXML(da.Pagina));
+                    texto.push('</paginas>\n');
+                    texto.push('</libro>\n');
+
+                }
+                texto.push('</libros>\n');
+                //No olvidemos especificar el tipo MIME correcto :)
+
+                return new Blob(texto, {
+                    type: 'application/xml'
+
+                });
+            }
+            ;
+            window.addEventListener('DOMContentLoaded', function () {
+
+                document.getElementById('boton-xml').addEventListener('click', function () {
+                    // var ldatos = obtenerDatos();
+                    descargarArchivo(generarXml(), 'archivo.xml');
+                }, false);
+                document.getElementById('boton-txt').addEventListener('click', function () {
+                    var ldatos = obtenerDatos();
+                    descargarArchivo(generarTexto(), 'archivo.txt');
+                }, false);
+            }, false);
+            // LEER XML
+            function SeleccionImagenes(evt) {
+
+                var files = evt.target.files; // Se crea el array files con los ficheros seleccioandos
+
+                f = files[0];// Solo no interesa el primero. Sera un fichero .xml con los datos de la biblioteca
+                var reader = new FileReader();// El objeto reader leera el archivo cuando ocurra el evento onload
+                                              // El evento onload ocurre al ejecutar reader.readAsText(f);
+                                              // El méto reader.readAsText(f); permite leer fichero en formato texto
+                                              // como son los ficheros xml
+                reader.onload = (function (ElFichero) {
+                    // La function anónima function (ElFichero), recibe el parámetro ElFichero que tiene
+                    // la propiedad name ElFichero.name, con el nombre del fichero
+                    // La siguiente fucntion anónima(es una clousure) , se le pasa el parámetro e, objeto con ela 
+                    // propiedad e.target.result, que obtiene el tecto(xml) del fichero seleccioando.
+                    return function (e) {
+
+                        var cadena = escape(ElFichero.name);
+                      //  alert(cadena + e.target.result)
+                        //  var parser = new marknote.Parser();
+                        //  var myXml = parser.parse( e.target.result);
+                        var txt = e.target.result;
+                        // Elobjeto DOMParser()partese creado a partir de la clase (API) new DOMParser();
+                        // proporciona el método parseFromString, que transforma una String en formato xml
+                        parser = new DOMParser();
+                        myXml = parser.parseFromString(txt, "text/xml");
+//
+                      //  alert(myXml)
+                        aisbn = myXml.getElementsByTagName("isbn");
+                        atitulo = myXml.getElementsByTagName("titulo");
+                        aautor = myXml.getElementsByTagName("autor");
+                        aeditorial = myXml.getElementsByTagName("editorial");
+                        apaginas = myXml.getElementsByTagName("paginas");
+                        //	alert(aisbn.length);
+                        for (var i = 0; i < aisbn.length; i++)
+                        {
+                            // alert(aisbn);
+                            p = new datoslibro(aisbn.item(i).firstChild.nodeValue, atitulo.item(i).firstChild.nodeValue, aautor.item(i).firstChild.nodeValue, aeditorial.item(i).firstChild.nodeValue, apaginas.item(i).firstChild.nodeValue);
+                            datos[i] = p;
+                        }
+                        c = i;
+                        contador = c;
+                        visualiza(0);
+                    };
+                })(f);// Ejecuta 
+                  
+                reader.readAsText(f); // Provoca la ejecuciñon del evento reader.onload = (function (ElFichero) {
+                                      //  y le pasa el file(f) obtenimdo con el input de type="file"
+                // L E E M E : http://www.html5rocks.com/es/tutorials/file/dndfiles/
+            }
+            window.onload = function () {
+                // Crear oyente para el input de type "file" con ide=files
+                document.getElementById('files').addEventListener('change', SeleccionImagenes, false);
+            }
+        </script>
+    </head>
+    <body>
+
+
+
+        <div>
+            <input type="file" id="files" name="files[]" multiple style="color: #c610e6;font-size: 24px"/></br>
+            <input type="button" id="boton-txt" value="Exportar como  TXT" style="font-size: 24px"/><br/>
+            <input type="button" id="boton-xml" value="Exportar como  XML"style="font-size: 24px"/>
+        </div>
+        <div style="height: 249px" >
+            <h1>Datos Libros</h1>
+
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 146px">ISBN</td>
+                    <td>
+                        <input id="iISBN" type="text" style="width: 257px" value=""/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 146px; height: 26px;">Titulo</td>
+                    <td style="height: 26px">
+                    <input id="Titulo" type="text" style="width: 377px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Autor&nbsp;</td>
+                    <td>
+                    <input id="Autor" type="text" style="width: 241px; height: 19px;" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Editorial</td>
+                    <td>
+                    <input id="Editorial" type="text" style="width: 155px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Número de Paginas</td>
+                    <td>
+                    <input id="Paginas" type="text" style="width: 158px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+
+            <input name="Button1" type="button" value="Grabar Datos" onclick="grabar();"/>
+
+            <input name="Button2" type="button" value="Imprimir Datos" onclick="imprimir();"/>
+            <input name="Button5" type="button" value="Imprimir en la Tbala" style="width: 227px" onclick="imprimirentabla()"/>
+
+            <input name="Button3" type="button" value="Siguiente" onclick="siguiente()" />
+            <input name="Button4" type="button" value="Anterior" onclick="anterior()" /><br />
+
+        </div>
+        <table border="2px" style="width: 100%;border:2px fuchsia solid" id="tabla">
+            <tbody id="cuerpo" >
+                <tr>
+                    <td style="height: 25px">ISBN</td>
+                    <td style="height: 25px">TITULO</td>
+                    <td style="height: 25px">AUTOR</td>
+                    <td style="width: 482px; height: 25px;">EDITORIAL</td>
+                    <td style="height: 25px">Nº DE PAGINAS</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </body>
+
+</html>
+
+
