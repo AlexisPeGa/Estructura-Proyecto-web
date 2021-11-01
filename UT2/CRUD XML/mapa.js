@@ -27,12 +27,12 @@ function inicioMapa(){
             anchor: new google.maps.Point(0, 0) // anchor
         };
     
-        marker = new google.maps.Marker({
+        /*marker = new google.maps.Marker({
             position: event.latLng,
             icon: icono,
             map: map,
-            nombre: 'Pepino'
-        });
+            nombre: 'Marcador'
+        });*/
         google.maps.event.addListener(marker, 'click', function() {
           //  alert("Click en marcador " + this.nombre+latitud_longitud.value);
         });
