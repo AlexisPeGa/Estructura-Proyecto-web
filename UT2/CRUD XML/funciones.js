@@ -220,7 +220,7 @@ function leeFicheroLocal(evt) {
         for (var i = 0; i < aNombre.length; i++) {
             // alert(aisbn);
             p = new datosgimnasio(aNombre.item(i).firstChild.nodeValue, aCalle.item(i).firstChild.nodeValue, aTelefono.item(i).firstChild.nodeValue, aLatitud.item(i).firstChild.nodeValue, aLongitud.item(i).firstChild.nodeValue);
-
+            
             datos[i] = p;
 
         }
