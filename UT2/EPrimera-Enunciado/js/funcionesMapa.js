@@ -69,10 +69,10 @@ function leeFicheroLocal(evt) {
 
         datos = new Array();
         var contenido = event.target.result;
-        //  alert("contenido" + contenido)
+  
         parser = new DOMParser();
         myXml = parser.parseFromString(contenido, "text/xml");
-        // alert("myXml" + myXml)
+    
 
         var aId = new Array();
         var aDescripcion = new Array();
@@ -89,7 +89,7 @@ function leeFicheroLocal(evt) {
         aImagen = myXml.getElementsByTagName("imagen");
         aFechaMantenimiento = myXml.getElementsByTagName("fechaMantenimiento");
         aFamilia = myXml.getElementsByTagName("familia");
-        //alert(aindice.length);
+
         for (var i = 0; i < aId.length; i++) {
 
             p = new datosmobiliario(aId.item(i).firstChild.nodeValue, aDescripcion.item(i).firstChild.nodeValue, aLatitud.item(i).firstChild.nodeValue, aLongitud.item(i).firstChild.nodeValue, aImagen.item(i).firstChild.nodeValue, aFechaMantenimiento.item(i).firstChild.nodeValue, aFamilia.item(i).firstChild.nodeValue);
@@ -171,7 +171,7 @@ function inicio() {
         document.getElementById('map_canvas'), {
         // En el mapa se visualiza el mapa correspondiente a esta latitud, longitud
         center: new google.maps.LatLng(latitud, longitud),//latitud,longitud),//
-        // center: new google.maps.LatLng(41.6685198,-3.6886618),//latitud,longitud),//
+        
         zoom: 18, // zoom del mapa
         draggableCursor: 'auto', // forma del cursor
         draggingCursor: 'crosshair',
@@ -190,47 +190,10 @@ function inicio() {
 
         datolatitud_longitud = event.latLng.toString();
         
-        
-        
-        //leeDireccion(event.latLng);
-    });
-    
+     
+    });   
 
 }
-/*
-// Obtiene la longitud y la latitud correspondiente al clic
-// y copia los datos en cajas de texto. Tambien obtiene la
-// dirección del lugar donde hacemos clic
-function leeDireccion(latlng) {
-    geocoder = new google.maps.Geocoder();
-    if (latlng != null) {
-        //    address = latlng;
-        //    geocoder.getLocations(latlng, MuestraDireccion);
-
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    //https://developers.google.com/maps/documentation/javascript/geocoding?hl=es
-                    //  alert(results[1].formatted_address);
-                    //  alert(results[0].formatted_address);
-                    MuestraDireccion(latlng, results[0].formatted_address)
-                } else {
-                    alert('No results found');
-                }
-            } else {
-                alert('Geocoder failed due to: ' + status);
-            }
-        });
-
-    }
-}
-*/
-/*function MuestraDireccion(latlng, direccion) {
-
-    direccionLocal.value = direccion;
-
-    latitud_longitud.value = latlng.lat() + "," + latlng.lng();
-}*/
 
 // Para poder borrar los marcadores es necesario almacenarlos en un array
 function borrarMarcadores() {
