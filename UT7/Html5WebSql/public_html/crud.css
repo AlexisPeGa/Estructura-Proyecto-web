@@ -1,0 +1,30 @@
+body {
+text-align: left;
+
+/*background-image:url('logolargo.jpg');background-repeat: no-repeat;
+background-position-x: 10px;background-position-y: 6px;
+background-size: 250px;*/
+background-color:#cccccc}
+#cabecera {
+    background:#ffffff;
+    background-image:url('logolargo.jpg');background-repeat: no-repeat;
+background-position-x: 10px;background-position-y: 6px;
+background-size: 250px;
+padding: 5px;
+margin-bottom:20px;
+margin-left:1 px;
+text-align: center;
+
+}
+ 
+ td:first-child {
+    background-color: #eee; font-weight: bold;
+     
+ }
+input[type="button"]  {
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+font-family:courier;font-size:16px;background-color: #333333;color: #ccffcc;
+ 
+}

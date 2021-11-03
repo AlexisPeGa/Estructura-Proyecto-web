@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Crear y descargar archivos con Javascript</title>
+        <link rel="icon" type="image/png" href="crud.png" />
+        <link rel="stylesheet" href="crud.css">
+         <script src="interfaz.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var db = null;
+            var nuevo = 1;
+            inicioBasedeDatos();
+
+        </script>
+    </head>
+    <body>
+        
+        
+  <h1>Gestión cortes de Videos con WebSqk</h1>
+
+        <div>
+             Dato a Buscar <input type="text" id="cdatoabuscar"/>
+ 
+            <select id="campos" >
+                <option value=""> Selecciona el campo de búsqueda</option>
+                <option value="id">id</option>
+                <option value="by_video">Video</option>
+                <option value="by_b1">Concepto Búsqueda 1</option>
+                <option value="by_b2">Concepto Búsqueda 2</option>
+                <option value="by_b3">Concepto Búsqueda 3</option>
+                
+            </select>
+        
+        </div></br>Mensajes<input type="text" id="mensaje" value="Mensaje"/></br></br>
+        <div style="height: 249px" >
+          
+
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 246px">Id</td>
+                    <td>
+                        <input id="iID" type="text" style="width: 257px" value=""  /> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 146px; height: 26px;">Video</td>
+                    <td style="height: 26px">
+                        <input id="Video" type="text" style="width: 377px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Descripción&nbsp;</td>
+                    <td>
+                        <input id="Descripcion" type="text" style="width: 241px; height: 19px;" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Concepto Búsqueda 1</td>
+                    <td>
+                        <input id="ConceptoB1" type="text" style="width: 155px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Concepto Búsqueda 3</td>
+                    <td>
+                        <input id="ConceptoB2" type="text" style="width: 155px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Concepto Búsqueda 4</td>
+                    <td>
+                        <input id="ConceptoB3" type="text" style="width: 155px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Incio Corte</td>
+                    <td>
+                        <input id="InicioCorte" type="text" style="width: 158px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">Fin Corte</td>
+                    <td>
+                        <input id="FinCorte" type="text" style="width: 158px" /></td>
+                </tr>
+                <tr>
+                    <td style="width: 146px">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+ <input name="Button8" type="button" value="Nuevo Reegsitro" onclick="NuevoRegistro()" /></br>
+            <input name="Button1" type="button" value="Grabar Registro" onclick="gabarRegistro();"/>
+     
+            
+          
+                <input type="radio" name="ordenlistado" value="ASC" id="asc"/>
+                <input type="radio" name="ordenlistado" value="DES" id="des"/>
+             <input name="Button5" type="button" value="Imprimir Tabla Registros" style="width: 227px" onclick="listaDatos()"/>
+          
+            <input name="Button3" type="button" value="Siguiente" onclick="LeerSiguiente()" />
+            <input name="Button4" type="button" value="Anterior" onclick="LeerAnterior()" /> 
+            
+            <input name="Button6" type="button" value="Borrar" onclick="BorrarRegistro()" />
+            <input name="Button7" type="button" value="Borrar todos los registros BD" onclick="borrarTodosRegistros()" /></br>
+           
+           
+         
+            Base de datos a Borrar<input type="text" id="cajaBD" value="BdVv"/><input name="Button9" type="button" value="Borrar Base de Datos" onclick="borrarAlmacendeDatos(cajaBD.value)" />
+            <br />
+        </div>
+        <table style="width: 100%;border: 2px fuchsia solid;margin-top:90px;border: fuchsia double medium " id="tabla">
+            <thead>
+                <tr>
+                    <td style="width: 25px">ID</td>
+                    <td style="width: 125px">VIDEO</td>
+                    <td style="width: 225px">DESCRIPCION</td>
+                    <td style="width: 90px; height: 25px;">BUSCQUEDA 1</td>
+                    <td style="width: 90px; height: 25px;">BUSCQUEDA 2</td>
+                    <td style="width: 90px; height: 25px;">BUSCQUEDA 3</td>
+                    <td style="width: 70px">INICIO CORTE</td>
+                    <td style="width: 70px">FIN CORTE</td>
+                </tr>
+                 </thead>
+                <tbody id="cuerpo" >
+            </tbody>
+        </table>
+
+    </body>
+
+</html>
+
+

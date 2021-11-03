@@ -22,7 +22,7 @@ function horario(){
 
 
 function grabar(){
-
+    
 }
 
 /*function comparar() {

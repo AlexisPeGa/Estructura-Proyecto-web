@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articulos>
+<articulo>
+    <codigo>1</codigo>
+    <nombre>Nombre</nombre>
+    <familia>jjj</familia>
+    <stock>1</stock>
+    <precio>1</precio>
+    <imagen>./imagenes/GALLO.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>2</codigo>
+    <nombre>2</nombre>
+    <familia>jjj</familia>
+    <stock>2</stock>
+    <precio>2</precio>
+    <imagen>./imagenes/LORO.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>2</codigo>
+    <nombre>2</nombre>
+    <familia>2</familia>
+    <stock>2</stock>
+    <precio>2</precio>
+    <imagen>./imagenes/aguila.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>3</codigo>
+    <nombre>3</nombre>
+    <familia>3</familia>
+    <stock>3</stock>
+    <precio>3</precio>
+    <imagen>./imagenes/ballena.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>4</codigo>
+    <nombre>4</nombre>
+    <familia>4</familia>
+    <stock>4</stock>
+    <precio>4</precio>
+    <imagen>./imagenes/caballo.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>5</codigo>
+    <nombre>5</nombre>
+    <familia>jjj</familia>
+    <stock>5</stock>
+    <precio>5</precio>
+    <imagen>./imagenes/cebra.jpg</imagen>
+</articulo>
+<articulo>
+    <codigo>6</codigo>
+    <nombre>6</nombre>
+    <familia>6</familia>
+    <stock>6</stock>
+    <precio>6</precio>
+    <imagen>./imagenes/conejo.jpg</imagen>
+</articulo>  
+</articulos>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <title>Sin título 1</title>
+        <link rel="icon" type="image/png" href="video.png" />
+        <script src="script_Bd_gmu.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" language="javascript">
+            var db = null;
+            var nuevo = 1;
+            inicioBasedeDatos();
+
+        </script> 
+
+    </head>
+
+    <body>
+
+        Codigo
+        <input type="text" id ="codigo"></input>
+        Nombre<input type="text" id ="nombre"></input>
+        Edad<input type="text" id ="edad"></input>
+
+        <input type="button" value ="Nuevo" onclick="NuevoRegistro()" />
+        <input type="button" Value ="grabar" onclick="gabarRegistro()"></input>
+
+        <input type="button" Value ="leer" onclick="Leer()"></input>
+        <input type="button" Value ="Borrar" onclick="BorrarRegistro()"></input>
+        <input type="button" onclick="listaDatos()" value="Lista Registros" />
+        <input type="button" onclick="dropTables()" value="Eliminar BD" />
+        dropTables
+    </body>
+    <!--
+    /*
+     var note = this;
+            db.transaction(function (tx) 
+            {
+                tx.executeSql("INSERT INTO WebKitStickyNotes (id, note, timestamp, left, top, zindex) VALUES (?, ?, ?, ?, ?, ?)", [note.id, note.text, note.timestamp, note.left, note.top, note.zIndex]);
+            }); 
+        },
+        function sqlLite(sql)
+    {
+     myDB.transaction(
+      function (transaction) {
+      transaction.executeSql(sql);
+     );
+    }
+    // Quick usage example:
+    sql = “INSERT INTO mytable (name) VALUES(’Bob’)”;
+    sqlLite(sql);
+    
+    -->
+    <table>
+        <tr><td>Codigo</td><td>Nombre</td><td>Edad</td></tr>
+        <tbody id="cuerpo">
+
+        </tbody>
+    </table>
+</html>

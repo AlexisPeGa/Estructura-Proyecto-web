@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="iso-8859-1">
+        <meta name="description" content="Ejemplo de HTML5">
+        <meta name="keywords" content="HTML5, CSS3, JavaScript">
+        <meta name="viewport" content= "width=device-width, initial-scale=1.0, user-scalable=no"/> 
+        <link rel="icon" type="image/png" href="calculadora.png" />
+        <title>Gestion de Pedidos</title>
+        <link rel="stylesheet" href="GestionPedidos.css">
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <div id="agrupar">
+            <header id="cabecera">
+                <h1>Gestion de Pedidos WebSql</h1>
+            </header>
+            <nav id="menu">
+                <ul>
+                    <li><a href="" onclick="window.close()">Cerrar Navegador</a></li>
+
+                </ul>
+
+            </nav>
+            <section id="seccion">
+                <article>
+                    
+                        Cliente<input type="text" id="ccliente"/>    
+                        
+
+                </article>
+                <article>
+                    <header>
+                        <h2>Articulos de Venta</h2>
+
+                    </header>
+                    Famila <input type="text" id="cfamilia"/> 
+                   <!-- <input type="button"  onclick="generarAlmacen()" value="Cargar">
+                   img src="lupa.jpg" id="lupa" style="z-index:1;position:absolute;left:100;top:100"/> 
+                    -->
+                    <img src="lupa.jpg" id="lupa" onclick="generarAlmacen()"/> </img>
+                    <table id="tablaarticulos">
+                        <thead>
+                        <tr><td>Articulo</td><td>Nombre</td><td>Stock</td><td>Precio</td><td>Imagen</td></tr>
+                        </thead>
+                        <tbody id="cuerpoarticulos">
+                            
+                        </tbody> 
+                        
+                    </table>
+                </article>
+                <article>
+                   <header>
+                        <h2>Pedido</h2>
+
+                    </header>
+                    <table id="tablapedido">
+                        
+                        <thead>
+                            <tr><td>Articulo</td><td>cantidad</td><td>Precio</td><td>Importe</td><td>Imagen</td></tr>
+                        </thead>
+                        <tbody id="cuerpopedido">
+                        </tbody>
+                        <tfooter>
+                            <tr><td colspan="5">|</td></tr>
+                            <tr><td colspan="3">T o t a l </td><td><input type="text" disabled="true" id="total"/></t></tr>
+                        </tfooter>
+                    </table>
+                </article>
+              
+            </section>
+            <aside id="columna">
+                <header>
+                    <h1>
+                        Gestion de Pedidos
+                    </h1>
+
+                </header>
+
+                <blockquote>Datos leidos de WebSql</blockquote>
+                </aside>
+            <footer id="pie">
+                Desarrollo de Aplicaciones Web(<cite>DAW</cite>) &copy; 2021-2022 CIFP Santa Catalina
+            </footer>
+        </div>
+        <script  type="text/javascript" src="pedidos.js"></script>
+        <script  type="text/javascript" src="BdWebSql.js"></script>
+    </body>
+</html>
+

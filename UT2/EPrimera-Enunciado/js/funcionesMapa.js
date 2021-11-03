@@ -25,6 +25,8 @@ function datosmobiliario(ID, DESCRIPCION, LATITUD, LONGITUD, IMAGEN, FECHAMANTEN
 }
 ///////// CREAR OBJETO//////////////
 
+//esta funcion permite seleccionar una opcion y en el caso de ser la opcion por defecto imprime toda la tabla o si es una de las tres guarda los datos en un array
+// e imprime solo los datos de la familia seleccionada
 function opcion() {
     datosCopia = new Array();
 
@@ -203,7 +205,7 @@ function borrarMarcadores() {
     }
     marcadores = new Array();
 }
-
+//pasando como parametro un array le pasamos la latitud y longitud del xml para que cree los diversos marcadores y metemos todos los datos en el array de marcadores
 function crearmarcador(Arraydatos) {
     for (i = 0; i < Arraydatos.length; i++) {
         var icono = {
