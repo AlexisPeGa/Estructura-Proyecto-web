@@ -205,7 +205,7 @@ function borrarMarcadores() {
     }
     marcadores = new Array();
 }
-//pasando como parametro un array le pasamos la latitud y longitud del xml para que cree los diversos marcadores y metemos todos los datos en el array de marcadores
+//pasando como parametro un array(en la llamada de la funcion pondremos datosCopia y datos ,linea 186 y 188) le pasamos la latitud y longitud del xml para que cree los diversos marcadores y metemos todos los datos en el array de marcadores
 function crearmarcador(Arraydatos) {
     for (i = 0; i < Arraydatos.length; i++) {
         var icono = {
