@@ -1,48 +1,57 @@
 var horarioMap = new Map();
 
-
-
 var profesores = new Array("Fernando", "Ana Gloria", "Marian", "Daniel");
 var asignaturas = new Array("DWEC", "DI", "DWES", "DAW");
-var cNombre = document.getElementById("cNombre").value;
-var cAsignatura = document.getElementById("cAsignatura").value;
+var cNombre = document.getElementById("cNombre");
+var cAsignatura = document.getElementById("cAsignatura");
 var cHora = document.getElementById("cHora");
-var cDia = document.getElementById("cDia");
+var cDia = document.getElementById("cDias");
 
 
 
 bGrabar.addEventListener("click", grabar, false);
 
-function horario(){
-    this.profesores=profesores;
-    this.asignaturas=asignaturas;
-    this.cHora=cHora;
-    this.cDia=cDia;
+function horario(profesores, asignaturas, cHora, cDia, indiceDia, indiceHora) {
+    this.profesores = profesores;
+    this.asignaturas = asignaturas;
+    this.cHora = cHora;
+    this.cDia = cDia;
+    this.indiceDia = indiceDia;
+    this.indiceHora = indiceHora;
 }
 
 
-function grabar(){
-    
+function grabar() {
+    var comprobacion = comprobar();
+    console.log(comprobacion);
+    if (comprobacion) {
+        var localizacion = "c" + (cHora.selectedIndex + 1) + (cDia.selectedIndex + 1);
+        horarioMap.set(localizacion, new horario(cNombre.value, cAsignatura.value, cHora.value, cDia.value, cDia.selectedIndex, cHora.selectedIndex));
+        document.getElementById(localizacion).innerHTML = cAsignatura.value;
+    }
 }
 
-/*function comparar() {
-    var bool1 = false;
-    var bool2 = false;
+function comprobar() {
     for (i = 0; i < profesores.length; i++) {
-        if (profesores[i] == cNombre) {
-            bool1 = true;
+        if (cNombre.value.toUpperCase() == profesores[i].toUpperCase()) {
+            for (i = 0; i < asignaturas.length; i++) {
+                if (cAsignatura.value.toUpperCase() == asignaturas[i].toUpperCase()) {
+
+                    return true;
+                }
+            }
+
         }
     }
-    if(bool1=false){
-        alert("Ese nombre no corresponde a ningun proofesor, introduce el nombre de un profesor");
-    }
-    for (i = 0; i < asignaturas.length; i++) {
-        if (asignaturas[i] == cAsignatura) {
-            bool2 = true;
-        } 
-    }
-    if(bool2=false){
-        alert("Ese nombre no corresponde a ninguna asignatura, introduce el nombre de una asignatura");
-    }
-}*/
 
+    alert("Introduce el nombre y la asignatura correctamente")
+    return false;
+}
+
+
+function visualizaMapa(id){
+    document.getElementById("cNombre").value=horarioMap.get(id).profesores;
+    document.getElementById("cAsignatura").value=horarioMap.get(id).asignaturas;
+    document.getElementById("cHora").selectedIndex=horarioMap.get(id).indiceHora;
+    document.getElementById("cDias").selectedIndex=horarioMap.get(id).indiceDia;
+}
