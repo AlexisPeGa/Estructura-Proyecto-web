@@ -1,81 +1,201 @@
-var map;
-var latitud = 41.67097948393865;
-var longitud = -3.6769259916763985;
-function inicioMapa() {
-    map = new google.maps.Map(
-        document.getElementById('map_canvas'), {
-        // En el mapa se visualiza el mapa correspondiente a esta latitud, longitud
-        center: new google.maps.LatLng(latitud, longitud),//latitud,longitud),//
-        // center: new google.maps.LatLng(41.6685198,-3.6886618),//latitud,longitud),//
-        zoom: 18, // zoom del mapa
-        draggableCursor: 'auto', // forma del cursor
-        draggingCursor: 'crosshair',
-        mapTypeId: google.maps.MapTypeId.SATELLITE // tipo de mama
-    });
-    google.maps.event.addListener(map, 'click', function (event) {
-
-        datolatitud_longitud = event.latLng.toString();
-
-
-
-        var fileName = "./imagenes/Logo.png";
-
-        var icono = {
-            url: "./imagenes/curso.png", // url
-            scaledSize: new google.maps.Size(25, 25), // scaled size
-            origin: new google.maps.Point(0, 0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
-
-        /*marker = new google.maps.Marker({
-            position: event.latLng,
-            icon: icono,
-            map: map,
-            nombre: 'Marcador'
-        });*/
-        google.maps.event.addListener(marker, 'click', function () {
-            //  alert("Click en marcador " + this.nombre+latitud_longitud.value);
-        });
-        //enviaLL(lineaAutobus,datolatitud_longitud);
-        leeDireccion(event.latLng);
-    });
-
-
-}
-// Obtiene la longitud y la latitud correspondiente al clic
-// y copia los datos en cajas de texto. Tambien obtiene la
-// dirección del lugar donde hacemos clic
-function leeDireccion(latlng) {
-    geocoder = new google.maps.Geocoder();
-    if (latlng != null) {
-        //    address = latlng;
-        //    geocoder.getLocations(latlng, MuestraDireccion);
-
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    //https://developers.google.com/maps/documentation/javascript/geocoding?hl=es
-                    //  alert(results[1].formatted_address);
-                    //  alert(results[0].formatted_address);
-                    MuestraDireccion(latlng, results[0].formatted_address)
-                } else {
-                    alert('No results found');
-                }
-            } else {
-                alert('Geocoder failed due to: ' + status);
-            }
-        });
-
+var arrayS = new Array();
+var arrayC = new Array();
+var marcadores = new Array();
+var contador = 0;
+var pos = 0;
+var calle = "";
+var totalpedido = 0;
+class servicio {
+    constructor(id, Descripcion, Direccion, Tipo, Latitud, Longitud, Precio, Duracion, CalleMaps) {
+        this.id = id;
+        this.Descripcion = Descripcion;
+        this.Direccion = Direccion;
+        this.Tipo = Tipo;
+        this.Latitud = Latitud;
+        this.Longitud = Longitud;
+        this.Precio = Precio;
+        this.Duracion = Duracion;
+        this.CalleMaps = CalleMaps;
+    }
+    leerRegistro() {
+        return this;
     }
 }
 
-function MuestraDireccion(latlng, direccion) {
 
-    document.getElementById('Calle').value = direccion;
-    alert(direccion);
-    document.getElementById('Latitud').value = latlng.lat();
-    document.getElementById('Longitud').value = latlng.lng();
+
+
+
+
+function generarServicios(evt) {
+    var cuerpoa = document.querySelector("#cuerpoServicios");
+    cuerpoa.innerHTML = "";
+
+    myDBInstance.transaction(function (tran) {
+        tran.executeSql('SELECT * FROM servicios', [], function (tran, data) {
+            
+                for (i = 0; i < data.rows.length; i++) {
+
+                    
+                    registroServicios = new servicio(
+                        data.rows[i].id,
+                        data.rows[i].Descripcion,
+                        data.rows[i].Direccion,
+                        data.rows[i].Tipo,
+                        data.rows[i].Latitud,
+                        data.rows[i].Longitud,
+                        data.rows[i].Precio,
+                        data.rows[i].Duracion,
+                        );
+
+                    linea = document.createElement("tr");
+                    botonId = document.createElement("button");
+
+                    dato = document.createTextNode(registroServicios.id);
+                    botonId.appendChild(dato);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(botonId);
+                    linea.appendChild(Columna);
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(registroServicios.Descripcion);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(registroServicios.Precio);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+                    parrafo = document.createElement("p");
+                    dato = document.createTextNode(registroServicios.Duracion);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+
+                    parrafo = document.createElement("p");
+
+                    //Generamos la calle a través de la API de Google Maps
+                    recuperarCalle(data.rows[i].Latitud, data.rows[i].Longitud, i);
+
+                    //Añadimos a la tabla la posición de la calle que corresponde
+                    dato = document.createTextNode(arrayC[i]);
+                    Columna = document.createElement("td");
+                    Columna.appendChild(dato);
+                    linea.appendChild(Columna)
+                    document.getElementById("contacto").value = "";
+
+                    //Añadimos un nuevo atributo al objeto de nuestro registro con la calle que nos ha generado la API
+                    registroServicios.CalleMaps = arrayC[i]
+                    botonId.registro = registroServicios;
+
+                    //Creamos el listener con la funcion de añadir a la tabla de debajo para los cálculos
+                    botonId.addEventListener("click", ventaServicio, false)
+
+                    cuerpoa.appendChild(linea);
+                    ;
+
+
+                }
+            
+
+
+        });
+
+    });
+
 }
 
-//carga el script de inicio del mapa
-inicioMapa();
+function ventaServicio() {
+    var repetido = false;
+    var servicioVenta = this.registro;
+
+    //Recorro el bucle para saber si el id coincide con otro del array para evitar duplicados
+    for (i = 0; i < arrayS.length; i++) {
+        if (arrayS[i].id == servicioVenta.id) {
+            //si es true incica que se repite
+            repetido = true
+        }
+    }
+    //Si no está repetido, continuamos
+    if (!repetido) {
+        /*Hacemos un push al array de Servicios, así tenemos los que nos interesan, 
+        que son los que nos hemos llevado para los cálculos*/
+        arrayS.push(servicioVenta)
+
+        //Llamamos a la función de crearMarcadores pasándole el array con los servicios elegidos
+        crearMarcador(arrayS);
+        var cuerpop = document.querySelector("#cuerpoPedido");
+
+        linea = document.createElement("tr");
+        dato = document.createTextNode(servicioVenta.id);
+        Columna = document.createElement("td");
+        Columna.appendChild(dato);
+        linea.appendChild(Columna)
+
+        parrafo = document.createElement("p");
+        dato = document.createTextNode(servicioVenta.Descripcion);
+        Columna = document.createElement("td");
+        Columna.appendChild(dato);
+        linea.appendChild(Columna)
+
+        parrafo = document.createElement("p");
+        dato = document.createTextNode(servicioVenta.Precio);
+        Columna = document.createElement("td");
+        Columna.appendChild(dato);
+        linea.appendChild(Columna)
+
+        ccantidad = document.createElement("input");
+        ccantidad.registro = servicioVenta;
+        ccantidad.id = "c";
+        Columna = document.createElement("td");
+        Columna.appendChild(ccantidad);
+        ccantidad.addEventListener("keyup", calculoimporte, false)
+        linea.appendChild(Columna)
+
+        pimporte = document.createElement("input");
+        pimporte.value = 0;
+        Columna = document.createElement("td");
+        Columna.appendChild(pimporte);
+        linea.appendChild(Columna)
+
+
+        cuerpop.appendChild(linea);
+
+    } else {
+        alert("El registro se ha repetido!")
+    }
+
+
+}
+
+//Función que calcula el importe y el total de los servicios en función del precio y la cantidad
+function calculoimporte() {
+    servicioVenta = this.registro;
+    var precio = servicioVenta.Precio;
+    var cantidad = this.value
+    var importeLinea = parseFloat(precio) * parseFloat(cantidad);
+
+    var lineaPadre = this.parentElement.parentElement;
+    console.log(lineaPadre)
+    var hijosVentaPedido = lineaPadre.childNodes;
+
+    //Accede del tr, al hijo número 4, que es el campo de importe
+    var importelinea = hijosVentaPedido[4].firstChild;
+
+    importelinea.value = importeLinea
+
+    if (isNaN(importelinea.value)) {
+        importelinea.value = '0';
+    }
+    if (isNaN(totalpedido)) {
+        totalpedido = 0;
+    }
+    totalpedido += importeLinea;
+    var ctotal = document.querySelector("#total");
+    ctotal.value = totalpedido;
+}
+
+
