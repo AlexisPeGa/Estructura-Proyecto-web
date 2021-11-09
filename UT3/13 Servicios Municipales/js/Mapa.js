@@ -1,8 +1,5 @@
 ////////////////////MAPA/////////////////
 
-
-
-
 //Cargo las variables del mapa
 var map;
 var latitud = 41.67097948393865;
@@ -23,28 +20,7 @@ function inicioMapa() {
     });
 }
 
-//Función para definir la calle en cuestión según la latitud y la longitud
-function recuperarCalle(lat, lng, i) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    // This is making the Geocode request
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, (results, status) => {
-        if (status !== google.maps.GeocoderStatus.OK) {
-            alert(status);
-        }
-        // This is checking to see if the Geoeode Status is OK before proceeding
-        if (status == google.maps.GeocoderStatus.OK) {
-            //Coge todos los componentes de la calle
-            var address_components = results[0].address_components;
-            //Devuelve un array con todos los parametros de la calle
-            const calle = address_components.reduce((seed, { long_name, types }) => (types.forEach(t => seed[t] = long_name), seed), {});
-            console.log(calle)
-            /*Cogemos de la calle lo que nos interesa, que es la dirección, el número, y la localidad y lo almacenamos
-            en un array de calles*/
-            arrayC[i] = calle.route + " " + calle.street_number + ", " + calle.locality
-        }
-    });
-}
+
 
 function crearMarcador(arrayS) {
 
@@ -69,7 +45,6 @@ function crearMarcador(arrayS) {
             tipo: arrayS[i].Tipo,
             precio: arrayS[i].Precio,
             duracion: arrayS[i].Duracion,
-            calle: arrayS[i].CalleMaps,
             map: map,
             nombre: 'marcador'
         });

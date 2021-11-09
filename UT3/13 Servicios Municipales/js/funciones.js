@@ -1,12 +1,11 @@
 var arrayS = new Array();
-var arrayC = new Array();
 var marcadores = new Array();
 var contador = 0;
 var pos = 0;
 var calle = "";
 var totalpedido = 0;
 class servicio {
-    constructor(id, Descripcion, Direccion, Tipo, Latitud, Longitud, Precio, Duracion, CalleMaps) {
+    constructor(id, Descripcion, Direccion, Tipo, Latitud, Longitud, Precio, Duracion) {
         this.id = id;
         this.Descripcion = Descripcion;
         this.Direccion = Direccion;
@@ -15,17 +14,12 @@ class servicio {
         this.Longitud = Longitud;
         this.Precio = Precio;
         this.Duracion = Duracion;
-        this.CalleMaps = CalleMaps;
+        
     }
     leerRegistro() {
         return this;
     }
 }
-
-
-
-
-
 
 function generarServicios(evt) {
     var cuerpoa = document.querySelector("#cuerpoServicios");
@@ -33,73 +27,69 @@ function generarServicios(evt) {
 
     myDBInstance.transaction(function (tran) {
         tran.executeSql('SELECT * FROM servicios', [], function (tran, data) {
-            
-                for (i = 0; i < data.rows.length; i++) {
 
-                    
-                    registroServicios = new servicio(
-                        data.rows[i].id,
-                        data.rows[i].Descripcion,
-                        data.rows[i].Direccion,
-                        data.rows[i].Tipo,
-                        data.rows[i].Latitud,
-                        data.rows[i].Longitud,
-                        data.rows[i].Precio,
-                        data.rows[i].Duracion,
-                        );
-
-                    linea = document.createElement("tr");
-                    botonId = document.createElement("button");
-
-                    dato = document.createTextNode(registroServicios.id);
-                    botonId.appendChild(dato);
-                    Columna = document.createElement("td");
-                    Columna.appendChild(botonId);
-                    linea.appendChild(Columna);
-
-                    parrafo = document.createElement("p");
-                    dato = document.createTextNode(registroServicios.Descripcion);
-                    Columna = document.createElement("td");
-                    Columna.appendChild(dato);
-                    linea.appendChild(Columna)
-
-                    parrafo = document.createElement("p");
-                    dato = document.createTextNode(registroServicios.Precio);
-                    Columna = document.createElement("td");
-                    Columna.appendChild(dato);
-                    linea.appendChild(Columna)
-
-                    parrafo = document.createElement("p");
-                    dato = document.createTextNode(registroServicios.Duracion);
-                    Columna = document.createElement("td");
-                    Columna.appendChild(dato);
-                    linea.appendChild(Columna)
-
-                    parrafo = document.createElement("p");
-
-                    //Generamos la calle a través de la API de Google Maps
-                    recuperarCalle(data.rows[i].Latitud, data.rows[i].Longitud, i);
-
-                    //Añadimos a la tabla la posición de la calle que corresponde
-                    dato = document.createTextNode(arrayC[i]);
-                    Columna = document.createElement("td");
-                    Columna.appendChild(dato);
-                    linea.appendChild(Columna)
-                    document.getElementById("contacto").value = "";
-
-                    //Añadimos un nuevo atributo al objeto de nuestro registro con la calle que nos ha generado la API
-                    registroServicios.CalleMaps = arrayC[i]
-                    botonId.registro = registroServicios;
-
-                    //Creamos el listener con la funcion de añadir a la tabla de debajo para los cálculos
-                    botonId.addEventListener("click", ventaServicio, false)
-
-                    cuerpoa.appendChild(linea);
-                    ;
+            for (i = 0; i < data.rows.length; i++) {
 
 
-                }
-            
+                registroServicios = new servicio(
+                    data.rows[i].id,
+                    data.rows[i].Descripcion,
+                    data.rows[i].Direccion,
+                    data.rows[i].Tipo,
+                    data.rows[i].Latitud,
+                    data.rows[i].Longitud,
+                    data.rows[i].Precio,
+                    data.rows[i].Duracion,
+                );
+
+                linea = document.createElement("tr");
+                botonId = document.createElement("button");
+
+                dato = document.createTextNode(registroServicios.id);
+                botonId.appendChild(dato);
+                Columna = document.createElement("td");
+                Columna.appendChild(botonId);
+                linea.appendChild(Columna);
+
+                parrafo = document.createElement("p");
+                dato = document.createTextNode(registroServicios.Descripcion);
+                Columna = document.createElement("td");
+                Columna.appendChild(dato);
+                linea.appendChild(Columna)
+
+                parrafo = document.createElement("p");
+                dato = document.createTextNode(registroServicios.Precio);
+                Columna = document.createElement("td");
+                Columna.appendChild(dato);
+                linea.appendChild(Columna)
+
+                parrafo = document.createElement("p");
+                dato = document.createTextNode(registroServicios.Duracion);
+                Columna = document.createElement("td");
+                Columna.appendChild(dato);
+                linea.appendChild(Columna)
+
+                parrafo = document.createElement("p");
+                dato = document.createTextNode(registroServicios.Direccion);
+                Columna = document.createElement("td");
+                Columna.appendChild(dato);
+                linea.appendChild(Columna)
+
+                parrafo = document.createElement("p");
+
+                //Añadimos un nuevo atributo al objeto de nuestro registro con la calle que nos ha generado la API
+                
+                botonId.registro = registroServicios;
+
+                //Creamos el listener con la funcion de añadir a la tabla de debajo para los cálculos
+                botonId.addEventListener("click", ventaServicio, false)
+
+                cuerpoa.appendChild(linea);
+                ;
+
+
+            }
+
 
 
         });
