@@ -30,18 +30,14 @@ foreach ($array as $dato){
 
 	$tmpArray[]=$dato;
 
-
 }
-
-
-
 	if ($connect->connect_errno) {
 
 		echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 
 	} else{											
 
-		$query = "INSERT INTO ElementosUrbanos VALUES (0,'$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]')";
+		$query = "INSERT INTO IOT_PeñalbaA VALUES (0,'$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]','$tmpArray[7]')";
 
 		
 

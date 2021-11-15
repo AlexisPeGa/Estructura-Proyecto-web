@@ -21,26 +21,8 @@ function eevaluaPatron() {
             document.getElementById("cId").focus()
         } else { document.getElementById("cId").style.color = "black" }
     }
-    if (cajaChequeo == "cNombre") {
-        var patron = /(?=^.{1,50}$)[a-zA-Záéíóú]+/;
-        var resultado = patron.test(cNombre.value);
-        console.log("Resultado Chequeo:" + resultado)
-        if (!resultado) {
-            document.getElementById("cNombre").style.color = "red"
-            document.getElementById("cNombre").focus()
-        } else { document.getElementById("cNombre").style.color = "black" }
-    }
-    if (cajaChequeo == "cDescripcion") {
-        var patron = /(?=^.{1,150}$)[a-zA-Záéíóú]+/;
-        var resultado = patron.test(cDescripcion.value);
-        console.log("Resultado Chequeo:" + resultado)
-        if (!resultado) {
-            document.getElementById("cDescripcion").style.color = "red"
-            document.getElementById("cDescripcion").focus()
-        } else { document.getElementById("cDescripcion").style.color = "black" }
-    }
     if (cajaChequeo == "cTipo") {
-        var patron = /^Alcantarilla$|^Sucia$|^Limpia$|^Farola$|^Papelera$|^Jardin$|^Datos$|^Eléctrica$/;
+        var patron = /^Temperatura$|^Luminosidad$|^Caudal$|^Viento$|^Contaminacion$|^Polucion$/; //Temperatura-luminosidad-caudal-viento-contaminacion(co2)-polucion
         var resultado = patron.test(cTipo.value);
         console.log("Resultado Chequeo:" + resultado)
         if (!resultado) {
@@ -48,8 +30,37 @@ function eevaluaPatron() {
             document.getElementById("cTipo").focus()
         } else { document.getElementById("cTipo").style.color = "black" }
     }
-    if (cajaChequeo == "cLatitud") {
+    if (cajaChequeo == "cCantidad") {
+        var patron =/^[0-9]+$/;
+        var resultado = patron.test(cCantidad.value);
+        console.log("Resultado Chequeo:" + resultado)
+        if (!resultado) {
+            document.getElementById("cCantidad").style.color = "red"
+            document.getElementById("cCantidad").focus()
+        } else { document.getElementById("cCantidad").style.color = "black" }
+    }
+    if (cajaChequeo == "cHora") {
+        var patron =/^[0-9]{2}[:][0-9]{2}$/;
+        var resultado = patron.test(cHora.value);
+        console.log("Resultado Chequeo:" + resultado)
+        if (!resultado) {
+            document.getElementById("cHora").style.color = "red"
+            document.getElementById("cHora").focus()
+        } else { document.getElementById("cHora").style.color = "black" }
+    }
+    if (cajaChequeo == "cFecha") {
 
+        var patron =/^[0-9]{2}[-][0-9]{2}[-][0-9]{4}$/;
+
+        var resultado = patron.test(cFecha.value);
+        console.log("Resltado Chequeo:" + resultado)
+        if (!resultado) {
+            document.getElementById("cFecha").style.color = "red"
+            document.getElementById("cFecha").focus()
+        } else { document.getElementById("cFecha").style.color = "black" }
+    }
+    if (cajaChequeo == "cLatitud") {
+        /* Tiene que comenzar por - */
         var patron = /^[0-9.]*$/
 
         var resultado = patron.test(cLatitud.value);
@@ -70,30 +81,32 @@ function eevaluaPatron() {
             document.getElementById("cLongitud").focus()
         } else { document.getElementById("cLongitud").style.color = "black" }
     }
-    if (cajaChequeo == "cFecahac") {
-        /* Tiene que comenzar por - */
-        var patron = /^[0-9]{2}[-][0-9]{2}[-][0-9]{4}$/
 
-        var resultado = patron.test(cFecahac.value);
+    if (cajaChequeo == "cDireccion") {
+        /* Tiene que comenzar por - */
+        var patron = /(?=^.{1,150}$)[a-zA-Z0-9áéíóú]+/;
+
+        var resultado = patron.test(cDireccion.value);
         console.log("Resltado Chequeo:" + resultado)
         if (!resultado) {
-            document.getElementById("cFecahac").style.color = "red"
-            document.getElementById("cFecahac").focus()
-        } else { document.getElementById("cFecahac").style.color = "black" }
+            document.getElementById("cDireccion").style.color = "red"
+            document.getElementById("cDireccion").focus()
+        } else { document.getElementById("cDireccion").style.color = "black" }
     }
-
-    if (cajaChequeo == "cFecaham") {
+    if (cajaChequeo == "cDescripcion") {
         /* Tiene que comenzar por - */
-        var patron = /^[0-9]{2}[-][0-9]{2}[-][0-9]{4}$/
-
-        var resultado = patron.test(cFecaham.value);
+        var patron = /(?=^.{1,300}$)[a-zA-Z0-9áéíóú]+/;
+    
+        var resultado = patron.test(cDireccion.value);
         console.log("Resltado Chequeo:" + resultado)
         if (!resultado) {
-            document.getElementById("cFecaham").style.color = "red"
-            document.getElementById("cFecaham").focus()
-        } else { document.getElementById("cFecaham").style.color = "black" }
+            document.getElementById("cDescripcion").style.color = "red"
+            document.getElementById("cDescripcion").focus()
+        } else { document.getElementById("cDescripcion").style.color = "black" }
     }
 }
+
+
 
 
 let cajas = document.querySelectorAll("form input");

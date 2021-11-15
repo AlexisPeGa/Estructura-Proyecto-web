@@ -6,18 +6,19 @@ function grabar() {
     grabarRegistro = true;
     nuevo = true;
     //'"' + "IdVecino" + '":' + '"' + IdVecino.value + '",'
-    cfc = cFecahac.value.split("-");
-    cFecahac.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
+    cfc = cLongitud.value.split("-");
+    cLongitud.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
 
-    cfc = cFecaham.value.split("-");
-    cFecaham.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
-    var datosElementoUrbano = '"' + "Nombre" + '":' + '"' + cNombre.value + '",'
-        + '"' + "Descripcion" + '":' + '"' + cDescripcion.value + '",'
-        + '"' + "Tipo" + '":' + '"' + cTipo.value + '",'
+    cfc = cDireccion.value.split("-");
+    cDireccion.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
+    var datosElementoUrbano = '"' + "Tipo" + '":' + '"' + cTipo.value + '",'
+        + '"' + "Cantidad" + '":' + '"' + cCantidad.value + '",'
+        + '"' + "Hora" + '":' + '"' + cHora.value + '",'
+        + '"' + "Fecha" + '":' + '"' + cFecha.value + '",'
         + '"' + "Latitud" + '":' + '"' + cLatitud.value + '",'
         + '"' + "Longitud" + '":' + '"' + cLongitud.value + '",'
-        + '"' + "FechaConstruccion" + '":' + '"' + cFecahac.value + '",'
-        + '"' + "FechaMantenimiento" + '":' + '"' + cFecaham.value + '"';
+        + '"' + "Direccion" + '":' + '"' + cDireccion.value + '",'
+        + '"' + "Descripcion" + '":' + '"' + cDescripcion.value + '"';
 
     alert(datosElementoUrbano)
     var ajaxrequest = new XMLHttpRequest();
@@ -26,7 +27,7 @@ function grabar() {
     var jdatoselemento = "{" + datosElementoUrbano + "}";
     var envio = "Todo=" + jdatoselemento;
 
-    ajaxrequest.open("POST", "http://www.informaticasc.com/daw_2122/CiudadI/php/grabarElementoUrbano.php", true);
+    ajaxrequest.open("POST", "http://www.informaticasc.com/daw_2122/CiudadI/php/AlexisP/grabarElementoUrbano.php", true);
     /*} else
     {
         datosElementoUrbano = '"' + "Id" + '":' + '"' + cId.value + '",' + datosElementoUrbano;

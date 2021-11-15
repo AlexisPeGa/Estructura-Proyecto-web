@@ -1,11 +1,15 @@
 var arrayS = new Array();
+var ArraySCopia=new Array();
 var marcadores = new Array();
+var seleccion = document.getElementById("FamiliaSeleccionada");
+var aseleccion=false;
 var contador = 0;
 var pos = 0;
 var calle = "";
 var totalpedido = 0;
+seleccion.addEventListener("change", opcion, true);
 class servicio {
-    constructor(id, Descripcion, Direccion, Tipo, Latitud, Longitud, Precio, Duracion) {
+    constructor(id, Descripcion, Direccion, Tipo, Latitud, Longitud, Precio, Duracion,Familia) {
         this.id = id;
         this.Descripcion = Descripcion;
         this.Direccion = Direccion;
@@ -14,12 +18,41 @@ class servicio {
         this.Longitud = Longitud;
         this.Precio = Precio;
         this.Duracion = Duracion;
-        
+        this.Familia=Familia;
     }
     leerRegistro() {
         return this;
     }
 }
+
+
+//esta funcion permite seleccionar una opcion y en el caso de ser la opcion por defecto imprime toda la tabla o si es una de las tres guarda los datos en un array
+// e imprime solo los datos de la familia seleccionada
+function opcion() {
+    ArraySCopia = new Array();
+
+    for (i = 0; i < arrayS.length; i++) {
+
+        if (ArrayS[i].Familia == seleccion.value) {
+
+            ArraySCopia.push(arrayS[i]);
+        }
+        console.log(ArraySCopia[i]);
+
+    }
+    switch (seleccion.value) {
+        case "defecto":
+            aseleccion = false;
+            generarServicios(arrayS);
+            break;
+        default:
+            aseleccion = true;
+            generarServicios(ArraySCopia);
+            break;
+    }
+    
+}
+
 
 function generarServicios(evt) {
     var cuerpoa = document.querySelector("#cuerpoServicios");
@@ -178,12 +211,12 @@ function calculoimporte() {
     importelinea.value = importeLinea
 
     if (isNaN(importelinea.value)) {
-        importelinea.value = '0';
+        importelinea.value = 0;
     }
     if (isNaN(totalpedido)) {
         totalpedido = 0;
     }
-    totalpedido += importeLinea;
+    totalpedido = totalpedido+importeLinea;
     var ctotal = document.querySelector("#total");
     ctotal.value = totalpedido;
 }
