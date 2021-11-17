@@ -25,26 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `IOT_PeñalbaA`
+-- Estructura de tabla para la tabla `IOT_PenalbaA`
 --
 
-CREATE TABLE `IOT_PeñalbaA` (
-  `id` int(11) NOT NULL,
-  `tipo` varchar(50) NOT NULL,
-  `cantidad` varchar(150) NOT NULL,
-  `hora` varchar(15) NOT NULL,
-  `fecha` varchar(20) NOT NULL,
-  `latitud` varchar(20) NOT NULL,
-  `longitud` date NOT NULL,
-  `direccion` date NOT NULL,
-  `descripcion` date NOT NULL
+CREATE TABLE `IOT_PenalbaA` (
+  `Id` int(11) NOT NULL,
+  `Tipo` varchar(20) NOT NULL,
+  `Cantidad` float NOT NULL,
+  `Hora` time NOT NULL,
+  `Fecha` date NOT NULL,
+  `Latitud` float NOT NULL,
+  `Longitud` float NOT NULL,
+  `Direccion` varchar(25) NOT NULL,
+  `Descripcion` varchar(300) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `IOT_PeñalbaA`
+-- Volcado de datos para la tabla `IOT_PenalbaA`
 --
 
-INSERT INTO `IOT_PeñalbaA` (`id`, `tipo`, `cantidad`, `hora`, `fecha`, `latitud`, `longitud`, `direccion`) VALUES
+INSERT INTO `IOT_PenalbaA` (`Id`, `Tipo`, `Cantidad`, `Hora`, `Fecha`, `Latitud`, `Longitud`, `Direccion`) VALUES
 (1, 'qqqqqqqqq', 'qqqqqqqqqqqq', 'Farola', '41.67087091685245', '-3.676887309193262', '1212-12-12', '1212-12-12'),
 (2, 'ssssssss', 'ddddddddddddddd', 'Limpia', '41.670902973588994', '-3.6769409533735598', '2020-10-12', '2021-11-23'),
 (3, 'Sala de departamento', 'Es unasala que ...', 'Farola', '41.67089896649779', '-3.676833036370226', '2021-01-23', '2022-10-15');
@@ -54,20 +54,20 @@ INSERT INTO `IOT_PeñalbaA` (`id`, `tipo`, `cantidad`, `hora`, `fecha`, `latitud
 --
 
 --
--- Indices de la tabla `IOT_PeñalbaA`
+-- Indices de la tabla `IOT_PenalbaA`
 --
-ALTER TABLE `IOT_PeñalbaA`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `IOT_PenalbaA`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `IOT_PeñalbaA`
+-- AUTO_INCREMENT de la tabla `IOT_PenalbaA`
 --
-ALTER TABLE `IOT_PeñalbaA`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `IOT_PenalbaA`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

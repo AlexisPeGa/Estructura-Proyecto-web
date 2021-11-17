@@ -8,7 +8,7 @@ include('conexionBd.php');
 
 
 
-$sql = "SELECT * FROM IOT_PeñalbaA ORDER BY Id  ";
+$sql = "SELECT * FROM IOT_PenalbaA ORDER BY Id  ";
 
 $resultado = mysqli_query($connect, $sql);
 

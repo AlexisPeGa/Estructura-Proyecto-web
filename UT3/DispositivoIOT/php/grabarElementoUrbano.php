@@ -37,7 +37,7 @@ foreach ($array as $dato){
 
 	} else{											
 
-		$query = "INSERT INTO IOT_PeñalbaA VALUES (0,'$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]','$tmpArray[7]')";
+		$query = "INSERT INTO IOT_PenalbaA VALUES (0,'$tmpArray[0]','$tmpArray[1]','$tmpArray[2]','$tmpArray[3]','$tmpArray[4]','$tmpArray[5]','$tmpArray[6]','$tmpArray[7]')";
 
 		
 

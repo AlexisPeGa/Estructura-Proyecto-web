@@ -60,7 +60,7 @@ function eevaluaPatron() {
         } else { document.getElementById("cFecha").style.color = "black" }
     }
     if (cajaChequeo == "cLatitud") {
-        /* Tiene que comenzar por - */
+        
         var patron = /^[0-9.]*$/
 
         var resultado = patron.test(cLatitud.value);
@@ -83,7 +83,7 @@ function eevaluaPatron() {
     }
 
     if (cajaChequeo == "cDireccion") {
-        /* Tiene que comenzar por - */
+       
         var patron = /(?=^.{1,150}$)[a-zA-Z0-9áéíóú]+/;
 
         var resultado = patron.test(cDireccion.value);
@@ -94,7 +94,7 @@ function eevaluaPatron() {
         } else { document.getElementById("cDireccion").style.color = "black" }
     }
     if (cajaChequeo == "cDescripcion") {
-        /* Tiene que comenzar por - */
+      
         var patron = /(?=^.{1,300}$)[a-zA-Z0-9áéíóú]+/;
     
         var resultado = patron.test(cDireccion.value);

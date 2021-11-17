@@ -6,11 +6,11 @@ function grabar() {
     grabarRegistro = true;
     nuevo = true;
     //'"' + "IdVecino" + '":' + '"' + IdVecino.value + '",'
-    cfc = cLongitud.value.split("-");
-    cLongitud.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
+    /*cfc = cLongitud.value.split("-");
+    cLongitud.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]*/
 
-    cfc = cDireccion.value.split("-");
-    cDireccion.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
+    cfc = cFecha.value.split("-");
+    cFecha.value = cfc[2] + "-" + cfc[1] + "-" + cfc[0]
     var datosElementoUrbano = '"' + "Tipo" + '":' + '"' + cTipo.value + '",'
         + '"' + "Cantidad" + '":' + '"' + cCantidad.value + '",'
         + '"' + "Hora" + '":' + '"' + cHora.value + '",'
