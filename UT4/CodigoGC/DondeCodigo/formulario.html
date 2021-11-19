@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <form  accept-charset="ISO-8859-1" enctype="application/x-www-form-urlencoded" id="controles" method="GET" action="https://www.informaticasc.com/ci/formulario.html" onsubmit="return controles()">
+        <p>Id: <input type="number" id="ID" size="10" step="4"></p>
+        <p>Nombre: <input  type="text" id="nombre" size="80"></p>
+        <p>Latitud <input type="text" id="latitud" size="20"></p>
+        <p>Longitud <input type="text" id="longitud" size="20"></p>
+        <p>Imagen <input type="file" id="fichero" size="40"></p>
+        <p>
+            <input type="submit" value="Enviar" >
+            <input type="reset" value="Borrar">
+        </p>
+    </form>
+    <a href="phps/mostrarFormulario.php">Mostrar Datos</a>
+
+    <a href="https://translate.google.es/?hl=es&sl=es&tl=en&text=Hola&op=translate">Saludar</a>
+    <br>
+    <!--               
+        PROTAPAPELES
+    -->
+    <label>Copiar en el input nombre el contenido  del portapapeles</label><input type="button" value="Copiar desde el Portapapeles" id="bportapapeles"/>
+    <br>
+    <label>Copiar en  el portapapeles el contenido del input nombre </label><input type="button" value="Copiar en el Portapapeles" id="bCopiarportapapeles"/>
+  
+  
+</body>
+<script src="./js/formulario.js"></script>
+
+
+
+ 
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+      <a href="https://dev.to/domagojvidovic/a-ridiculously-simple-way-for-creating-responsive-web-apps-1f43">Responsive facil</a>
+    <br> <a href="https://www.jairogarciarincon.com/clase/introduccion-a-las-aplicaciones-web-con-html5-css3-y-javascript/diseno-responsive-con-media-queries">Responsive facil</a>
+    <div class="container">
+      <div class="item">Item 1</div>
+      <div class="item">Item 2</div>
+      <div class="item">Item 3</div>
+    </div>
+  </body>
+
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-content: flex-start;
+      gap: 16px;
+      padding: 16px;
+      background-color: bisque;
+    }
+
+    .item {
+      padding: 88px 16px;
+      background-color: coral;
+    }
+    
+    @media (min-width: 992px) {
+      .container {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+ 
+ 
+  </style>
+</html>

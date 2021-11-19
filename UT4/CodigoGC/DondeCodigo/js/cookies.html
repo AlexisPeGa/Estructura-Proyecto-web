@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+var c=0;
+var tt=setInterval(()=>{
+  alert('Hola');
+  c++;
+  if(c>13){clearInterval(tt);alert('Fin');}
+}, 500);
+alert('fuera');
+            alert(navigator.cookieEnabled);
+            // crear cookie
+            var galleta = "Ciclo" + "=" + "Daw"
+            document.cookie = galleta;
+              // Modificar cookie
+            var galleta = "Ciclo" + "=" + "DAM"
+            document.cookie = galleta;
+            var galleta = "Modulo" + "=" + "Diseño de Interfaces Web"
+             // crear otra cookie
+            document.cookie = galleta;
+              // Leer cookies
+            datos = document.cookie;
+            console.log("Datos leidos de la cookie: " + datos)
+
+            // Borar cookie por clave
+            // 
+          /*  fborrar = new Date()
+                   alert(fborrar.getDate());
+            fborrar.setDate(fborrar.getDate() - 1)
+            alert(fborrar.getDate());
+            var clave = "Ciclo"
+            cadena = clave + "=;expires=" + fborrar.toGMTString();
+            document.cookie = cadena;*/
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>

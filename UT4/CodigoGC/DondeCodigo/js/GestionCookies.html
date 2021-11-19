@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Documento sin título</title>
+<script type="text/javascript">
+ var posc=0;
+aalumnos = new Array();
+function graba()
+{
+ddni=document.getElementById("cdni").value;
+dnombre=document.getElementById("cnombre").value;
+dcurso=document.getElementById("ccurso").value;
+dedad=document.getElementById("cedad").value;
+hoy = new Date("December 31,2012");
+//alert(hoy);
+var galleta= ddni+"="+ddni+","+dnombre+","+dcurso+","+dedad+";expires="+hoy.toGMTString();
+//alert(galleta);
+document.cookie=galleta;
+datos=document.cookie;
+//alert("DATOS:"+datos);
+
+ posc++;
+aalumnos[posc]=galleta;
+ alert("DATOS:"+aalumnos[posc]);
+}
+function leer()
+{
+datos=document.cookie;
+ 
+aalumnos=datos.split(";");
+
+for(i=0;i<aalumnos.length;i++)
+{
+	valora=aalumnos[i];
+
+	//alert(valora+".."+ada);
+	td=valora.split(",");
+	//alert(dni+"---"+td[0]);
+	var dni=document.getElementById("cdni").value;
+ 
+		posc=i;
+	
+		break;
+	}
+	 document.getElementById("cdni").value=td[0];
+	document.getElementById("cnombre").value=td[1];
+	document.getElementById("ccurso").value=td[2];
+	document.getElementById("cedad").value=td[3];
+}
+function borra()
+{
+	document.getElementById("cdni").value="";
+document.getElementById("cnombre").value="";
+document.getElementById("ccurso").value="";
+document.getElementById("cedad").value="";
+}
+function siguiente()
+{
+
+posc=posc+1;
+var n=aalumnos.length -1 ;
+
+if(posc > n)
+{
+posc=aalumnos.length -1;
+
+}
+else{
+	//posc=aalumnos.length;
+
+	valora=aalumnos[posc];
+	//alert (valora);
+	//posigual=valora.indexOf("=")+1;
+
+	//alert(valora+".."+ada);
+	td=valora.split(",");
+	//alert(dni+"---"+td[0]);
+		document.getElementById("cdni").value=td[0];
+	document.getElementById("cnombre").value=td[1]
+	document.getElementById("ccurso").value=td[2]
+	document.getElementById("cedad").value=td[3]
+}
+
+}
+function anterior()
+{
+
+posc=posc-1;
+if(posc < 0){
+posc=0;}
+valora=aalumnos[posc];
+	//alert (valora);
+	//posigual=valora.indexOf("=")+1;
+
+	 
+
+	//alert(valora+".."+ada);
+	td=valora.split(",");
+	//alert(dni+"---"+td[0]);
+ 
+		document.getElementById("cdni").value=td[0];
+	document.getElementById("cnombre").value=td[1]
+	document.getElementById("ccurso").value=td[2]
+	document.getElementById("cedad").value=td[3]
+}
+
+function borrar()
+{
+fborrar = new Date()
+fborrar.setDate(fborrar.getDate()-1)
+
+nombrec= document.getElementById("cdni").value;
+cadena =nombrec+"=;expires="+fborrar.toGMTString();
+//alert(cadena);
+document.cookie=cadena;
+}
+function listado()
+{
+ 
+var salida="<table border=2><tr><td>DNI</td><td>Nombre</td><td>Curso</td><td>Edad</td></tr>";
+datos=document.cookie;
+ 
+aalumnos=datos.split(";");
+pos=12;
+for(i=0;i<aalumnos.length;i++)
+{
+	valora=aalumnos[i];
+	 
+	//ada=valora.substr(pos,valora.length -13);
+ 
+	 // alert(valora+".."+ada);
+	td=valora.split(",");
+	//  alert(dni+"---"+td[0]);
+
+	posc=i;
+	cadena="<tr><td>"+td[0]+"</td><td>"+td[1]+"</td><td>"+td[2]+"</td><td>"+td[3]+"</td></tr>";
+    salida=salida+cadena;
+	
+	
+	}
+
+ salida=salida+"</table>";	
+ 
+  document.write(salida);
+ 
+}
+function limpiadatos()
+{
+document.getElementById("cdni").value="";
+	document.getElementById("cnombre").value="";
+	document.getElementById("ccurso").value="";
+	document.getElementById("cedad").value="";
+}
+</script>
+</head>
+
+<body>
+DNI .................:<input id="cdni" type="text" maxlength="8">
+<br>
+
+Nombre ...........:<input id="cnombre" type="text"><br>
+Curso ...............:<input id="ccurso" type="text"><br>
+Edad ................:<input id="cedad" type="text"><br><br><br>
+<br>
+<table width="75%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFCCCC">
+  <tr>
+    <td><input name="grabar" type="button" onClick="graba()" value="Graba Alumnos"></td>
+    <td><input name="borrar" type="button" onClick="borrar()" value="Borrar Datos"></td>
+    <td><input name="Limpiar" type="button" onClick="limpiadatos();" value="LImpiar campos"></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><input name="anterior" type="button" onClick="anterior()" value="Anterior"></td>
+    <td><input name="siguiente" type="button" onClick="siguiente()" value="Siguiente"></td>
+    <td><input name="listado" type="button" onClick="listado()" value="Listado">
+    <input name="Recargar" type="button" onClick="leer();" value="Recargar datos"></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

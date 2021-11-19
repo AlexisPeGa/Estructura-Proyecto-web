@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Ejemplo de HTML5">
+  <meta name="keywords" content="HTML5, CSS3, JavaScript">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" href="./imagenes/Logo.png">
+  <title>Plantilla</title>
+  <link rel="stylesheet" href="./css/plantilla.css">
+
+</head>
+
+<body>
+  <div id="contenedor">
+    <header id="cabecera">
+
+      
+        <picture style="margin: 5px;">
+          <source media="(min-width: 500px)" srcset="imagenes/LogoPlantilla.png">
+          <img id="imagenTitulo" src="imagenes/Logop.png" alt="Logo CIFP">
+        </picture>
+        <h1 id="titulo">Plantilla genérica de la web </h1>
+
+      
+    </header>
+    <nav id="menu">
+      <input type="checkbox" id="menuopciones">
+      <label for="menuopciones"> ☰ </label>    
+      <ul>
+        <li id="CambiaTamano">Cambiar tamaño imagen</li>
+        <li onclick="recuperaTamaño()">Recupera tamaño de la imagen</li>
+        <li onclick="ocultaImagen()">Oculta Imagen</li>
+        <li id="VisualizaImagen">Visualiza Imagen</li>
+      </ul>
+
+    </nav>
+    <section id="seccion">
+      <article>
+        <header>
+          <hgroup>
+            <h3>Código javascript en un control html</h3>
+            <h1>Pasa el ratón sobre la imagen</h1>
+          </hgroup>
+          
+        </header>
+         
+        <figure>
+          <img id="imagenjs" src="./imagenes/Logo.png" onmouseover="this.src='./imagenes/Logop.png'" onmouseout="this.src='./imagenes/Logo.png'">
+        </figure>
+        <footer>
+          <p>Código javascript en un elemento html</p>
+        </footer>
+      </article>
+      <article>
+        <header>
+          <hgroup>
+            <h1>Eventos</h1>
+            <h2>UT4 Iteracción con el usuario: Eventos y formularios</h2>
+          </hgroup>
+          <time datetime="2021-08-21" pubdate>publicado 30/08/2021
+          </time>
+        </header>
+         <article>
+           <!-- onMouseOver="MiFuncion()">-->
+          <a id="enlace" onMouseOver="return MiFuncion()"  href="file:///Q:/DAW_2021_2022/___Desarrollo%20del%20curso/CodigoGC/DondeCodigo/index.html" >          
+            Apuntes :UT4 Iteracción con el usuario: Eventos y formularios</a>
+         <br>
+            <a id="enlacedPdf" href="file:///Q:/DAW_2021_2022/___Desarrollo%20del%20curso/UT4%20Iteracci%C3%B3n%20con%20el%20usuario_%20Eventos%20y%20formularios.pdf" >          
+              Apuntes Pdf :UT4 Iteracción con el usuario: Eventos y formularios</a>
+          </article>
+          <article>
+            <!--Propagacion de eventos-->
+              <h1>Propagacion de eventos</h1>
+              <div id="cajonera" style="background-color: cornflowerblue;height: 100px;">
+                <br>
+                <p id="caja" style="height: 50px;margin:10px;background-color: rgb(27, 219, 101);">caja
+                  <button id="cajita" style="margin:10px;background-color: rgb(189, 54, 171);">Haz Clic</button>
+                </p>
+              </div>
+           </article>
+           <article>
+            <!--Anular Evento-->
+              <h1> Anular Evento</h1>
+              <input type="text" id="contraseña" value="Apunta la clave,no la repetire"/>
+              <input type="button" value="Obtener Clave" id="ObtenerClave"/>
+           </article>
+           <article>
+            <!--Lanzar Evento-->
+              <h1> Lanzar Evento</h1>
+             <button id="botonLanzador">Botón lanzador de eventos</button>
+             <button id="botonLanzado">Botón lanzado de eventos</button>
+           </article>
+
+           <article>
+            <!--Utilizar códio HTML-->
+              <h1 id="elementosHTML" data-colorhtml="cyan"> Utilizar códio HTML</h1>  
+              <input type="button" id="bCajahtml" value="Inserta html"/>
+              <input type="button" id="cCajahtml" value="Cambia html"/>
+              <input type="button" id="aCajahtml" value="Añade html"/>
+              
+             <div id="cajahtml">
+               <b>HTML Contenido en el div </b><br>          
+             
+             </div>
+           </article>
+           
+        <footer>
+          <p>Apuntes</p>
+        </footer>
+      </article>
+    </section>
+    <aside id="columna">
+      <blockquote>Donde cremaos el código javacript en la Página Web:</blockquote>
+      <hr><hr>
+       <ul>
+         <li>En un elemento html</li>
+         <li>En un script dento del fichero html</li>
+         <li>En un fichero externo con la extensión js</li>
+       </ul>
+    </aside>
+    <footer id="pie">
+      Desarrollo de Aplicaciones Web(DAW) © CIFP Santa Catalina
+    </footer>
+  </div>
+</body>
+<script type="text/javascript">
+
+var botonTamano =document.getElementById("CambiaTamano");
+botonTamano.addEventListener("click", cambiaTamaño, false);
+function cambiaTamaño() {
+    var imagen =document.getElementById("imagenjs");
+    imagen.style.width="50px"
+    imagen.style.height="50px"
+     
+  } 
+  function recuperaTamaño() {
+    var imagen =document.getElementById("imagenjs");
+    debugger
+    imagen.style.width="165px"
+    imagen.style.height="145px"
+     
+  } 
+
+  
+</script>
+
+<script   src="js/funciones.js"></script> 
+</html>
